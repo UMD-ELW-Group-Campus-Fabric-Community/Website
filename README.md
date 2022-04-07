@@ -1,8 +1,23 @@
 This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
 
-## Getting Started
+## Data Source
+This repository uses data thats structure mirrors the data presented from the database. In order to query data directly from the database, clone the [database-1 repository](https://github.com/UMD-ELW-Group-Campus-Fabric-Community/Database-1) and run the docker-container. Refer to repository `README.md` for further instructions for setting up the database.
+**Note that you do not need the database to develop the website**
 
-First, run the development server:
+## Getting Started
+First, install the dependencies:
+Note: This project was created using yarn, you may want to consider installing yarn first.
+```bash
+npm install -g yarn
+```
+
+```bash
+npm install
+# or
+yarn | yarn install
+```
+
+Next, run the development server:
 
 ```bash
 npm run dev
