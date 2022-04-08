@@ -12,7 +12,7 @@ type ErrorResponse = {
 }
 
 
-function searchprogramJson<programProps> (programId: string) {
+function searchProgramJson<programProps> (programId: string) {
   const program = data.programs.find(program => program.program_id === programId)
     if (program) {
       return {
@@ -33,7 +33,7 @@ export default function handler(
 
     switch (method) {
       case 'GET':
-        const program = searchprogramJson(String(programId));
+        const program = searchProgramJson(String(programId));
         if (program == null) {
           const response: ErrorResponse = {
             statusCode: 404,
@@ -46,17 +46,6 @@ export default function handler(
         res.status(200).json({
           ...program
         })
-        return
-        
-        break
-      case 'POST':
-        res.status(201).end()
-        break
-      case 'PUT':
-        res.status(204).end()
-        break
-      case 'DELETE':
-        res.status(204).end()
         break
       default:
         res.setHeader('Allow', ['GET'])

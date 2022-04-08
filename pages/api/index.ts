@@ -18,15 +18,6 @@ export default function handler(
         message: 'Welcome to the ELWG API! Refer to the documentation for more information.'
        })
       break
-    case 'POST':
-      res.status(201).end()
-      break
-    case 'PUT':
-      res.status(204).end()
-      break
-    case 'DELETE':
-      res.status(204).end()
-      break
     default:
       res.setHeader('Allow', ['GET'])
       res.status(405).end(`Method ${method} Not Allowed`)

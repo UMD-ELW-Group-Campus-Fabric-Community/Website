@@ -46,17 +46,6 @@ export default function handler(
         res.status(200).json({
           ...article
         })
-        return
-        
-        break
-      case 'POST':
-        res.status(201).end()
-        break
-      case 'PUT':
-        res.status(204).end()
-        break
-      case 'DELETE':
-        res.status(204).end()
         break
       default:
         res.setHeader('Allow', ['GET'])

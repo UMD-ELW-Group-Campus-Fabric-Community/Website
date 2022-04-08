@@ -1,5 +1,5 @@
 import { NextPage, GetServerSideProps, GetServerSidePropsContext } from "next";
-import { articleProps } from './index';
+import { programProps } from './index';
 
 import { ParsedUrlQuery } from "querystring";
 
@@ -10,9 +10,9 @@ import DefaultNav from '../../library/components/bars/nav'
 import DefaultFooter from '../../library/components/bars/footer'
 
 
-export const getServerSideProps: GetServerSideProps<articleProps> = async (context: GetServerSidePropsContext) => {
-    const { articleId } = context.params as ParsedUrlQuery;
-    const response = await fetch(`http://localhost:3000/api/articles/${articleId}`,{
+export const getServerSideProps: GetServerSideProps<programProps> = async (context: GetServerSidePropsContext) => {
+    const { programId } = context.params as ParsedUrlQuery;
+    const response = await fetch(`http://localhost:3000/api/programs/${programId}`,{
         method: 'GET',
         headers: {
             'Content-Type': 'application/json'
@@ -32,7 +32,7 @@ export const getServerSideProps: GetServerSideProps<articleProps> = async (conte
 }
 
 
-const Article: NextPage<articleProps> = ( article ) => {
+const Program: NextPage<programProps> = ( program ) => {
     return (
         <div className={styles.container}>
             {/* This is the head of the DOM, not of the body */}
@@ -40,8 +40,8 @@ const Article: NextPage<articleProps> = ( article ) => {
             <DefaultNav/>
             
             <main className={styles.main}>
-                <h1>{article.article_title}</h1>
-                <p>{article.article_content}</p>
+                <h1>{program.program_name}</h1>
+                <p>{program.program_description}</p>
             </main>
 
             <DefaultFooter />   
@@ -50,4 +50,4 @@ const Article: NextPage<articleProps> = ( article ) => {
         
     )
 };
-export default Article;
+export default Program;

@@ -18,29 +18,36 @@ export type articleProps = {
 type articlesProps = {
   articles: articleProps[];
 }
+type ErrorResponse = {
+  statusCode: number;
+  message: string;
+}
 
+function getAllArticles () {
+  return {
+    articles: data.articles
+  }
+}
 
 export default function handler(
     req: NextApiRequest,
-    res: NextApiResponse<articlesProps>
+    res: NextApiResponse<articlesProps | ErrorResponse>
   ) {
     const { method } = req
     switch (method) {
       case 'GET':
-        res.status(200).json(
-          {
-            articles: data.articles
+        const articles = getAllArticles();
+        if (articles == null) {
+          const response: ErrorResponse = {
+            statusCode: 404,
+            message: 'Articles not found'
           }
-        )
-        break
-      case 'POST':
-        res.status(201).end()
-        break
-      case 'PUT':
-        res.status(204).end()
-        break
-      case 'DELETE':
-        res.status(204).end()
+          res.status(404).json(response)
+          return
+        }
+        res.status(200).json({
+          ...articles
+        })
         break
       default:
         res.setHeader('Allow', ['GET'])

@@ -10,26 +10,25 @@ import DefaultFooter from '../../library/components/bars/footer'
 
 
 
-export type articleProps = {
-    user_id:              number;
-    user_fname:           string;
-    user_lname:           string;
-    article_id:           number;
-    article_title:        string;
-    article_content:      string;
-    article_created_at:   Date;
-    article_updated_at:   Date;
-    organization_id:      number;
+export type programProps = {
+    program_id:           string;
+    program_name:         string;
+    program_description:  string;
+    program_website:      string;
+    program_focus:        string[];
+    department_id:        string;
+    department_name:      string;
+    organization_id:      string;
     organization_name:    string;
     organization_website: string;
 }
 
-type articlesProps = {
-    articles: articleProps[];
+type programsProps = {
+    programs: programProps[];
 }
 
 export const getStaticProps: GetStaticProps = async ( context: GetStaticPropsContext ) => {
-    const response = await fetch("http://localhost:3000/api/articles", {
+    const response = await fetch("http://localhost:3000/api/programs", {
         method: 'GET',
         headers: {
             'Content-Type': 'application/json'
@@ -43,12 +42,12 @@ export const getStaticProps: GetStaticProps = async ( context: GetStaticPropsCon
     }
     return {
         props: {
-            articles: data.articles
+            programs: data.programs
         }
     }
 }
 
-const Articles: NextPage<articlesProps> = ( {articles} ) => {
+const Programs: NextPage<programsProps> = ( {programs} ) => {
     return (
         <div className={styles.container}>
           {/* This is the head of the DOM, not of the body */}
@@ -57,11 +56,11 @@ const Articles: NextPage<articlesProps> = ( {articles} ) => {
           
             <main className={styles.main}>
                 {
-                    articles.map((article: articleProps) => {
+                    programs.map((program: programProps) => {
                         return (
-                            <div key={article.article_id}>
-                                <Link href={`/articles/${article.article_id}`} as={`/articles/${article.article_id}`}>
-                                    <a>{article.article_title}</a>
+                            <div key={program.program_id}>
+                                <Link href={`/programs/${program.program_id}`} as={`/programs/${program.program_id}`}>
+                                    <a>{program.program_name}</a>
                                 </Link>
                             </div>
                         )
@@ -75,4 +74,4 @@ const Articles: NextPage<articlesProps> = ( {articles} ) => {
     )
 };
 
-export default Articles;
+export default Programs;
