@@ -17,7 +17,8 @@ const WorkRequestForm: NextPage = () => {
     const [notification, setNotification] = useState({
         title: '',
         message: '',
-        redirect: '/'
+        redirect: '/workreq',
+        callback: popup_callback
     });
 
     const initValues = {
@@ -49,6 +50,9 @@ const WorkRequestForm: NextPage = () => {
         }
     }
 
+    async function popup_callback() {
+        setIsShowNotification(false);
+    }
 
     return (
         <div className={styles.container}>
@@ -57,7 +61,7 @@ const WorkRequestForm: NextPage = () => {
             <DefaultNav/>
             {
                 isShowNotification &&
-                <PopUp {...notification}/>
+                <PopUp {...notification} />
             }
             <main className={styles.main}>
                 <div>

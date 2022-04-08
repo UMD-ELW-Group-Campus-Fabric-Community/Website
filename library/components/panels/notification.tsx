@@ -5,17 +5,19 @@ type popUpProps = {
     title: string;
     message: string;
     redirect: string;
+    callback: any;
 }
 
 const PopUp = (props: popUpProps) => {
-    const { title, message } = props;
+    const { title, message, redirect, callback } = props;
     const router = useRouter();
 
     const [isShown, setShown] = useState(true);
     
-    const closePopUp = () => { 
+    const closePopUp = async () => { 
         setShown(false);
-        router.push(props.redirect);
+        await callback();
+        router.push(redirect);
      }
 
     return (
