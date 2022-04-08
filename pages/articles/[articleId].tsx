@@ -1,8 +1,13 @@
-import { useRouter } from "next/router";
-import { GetServerSideProps, GetServerSidePropsContext } from "next";
+import { NextPage, GetStaticPaths, GetServerSideProps, GetServerSidePropsContext } from "next";
 import { articleProps } from './index';
 
 import { ParsedUrlQuery } from "querystring";
+
+import styles from '../../styles/Home.module.css'
+
+import DefaultHeader from '../../library/utils/metadata/header'
+import DefaultNav from '../../library/components/bars/nav'
+import DefaultFooter from '../../library/components/bars/footer'
 
 
 export const getServerSideProps: GetServerSideProps<articleProps> = async (context: GetServerSidePropsContext) => {
@@ -22,12 +27,21 @@ export const getServerSideProps: GetServerSideProps<articleProps> = async (conte
 }
 
 
-const Article: React.FC<articleProps> = ( props: articleProps ) => {
+const Article: NextPage<articleProps> = ( {article} ) => {
     return (
-        <>
-            <h1>{props.article_title}</h1>
-            <p>{props.article_content}</p>
-        </>
+        <div className={styles.container}>
+            {/* This is the head of the DOM, not of the body */}
+            <DefaultHeader/>
+            <DefaultNav/>
+            
+            <main className={styles.main}>
+                <h1>{article.article_title}</h1>
+                <p>{article.article_content}</p>
+            </main>
+
+            <DefaultFooter />   
+
+        </div>
         
     )
 };

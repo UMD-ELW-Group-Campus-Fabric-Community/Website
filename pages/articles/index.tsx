@@ -1,7 +1,14 @@
 
 import Link from "next/link";
-import { GetServerSideProps, GetServerSidePropsContext } from "next";
+import { NextPage, GetStaticProps, GetStaticPropsContext } from "next";
 import React from "react";
+
+import styles from '../../styles/Home.module.css'
+
+import DefaultHeader from '../../library/utils/metadata/header'
+import DefaultNav from '../../library/components/bars/nav'
+import DefaultFooter from '../../library/components/bars/footer'
+
 
 
 export type articleProps = {
@@ -16,37 +23,47 @@ export type articleProps = {
     organization_id:      number;
     organization_name:    string;
     organization_website: string;
-  }
-  
-  type articlesProps = {
-    articles: articleProps[];
-  }
+}
 
-export const getServerSideProps: GetServerSideProps<articlesProps> = async ( context: GetServerSidePropsContext ) => {
+type articlesProps = {
+articles: articleProps[];
+}
+
+export const getStaticSideProps: GetStaticProps = async ( context: GetStaticPropsContext ) => {
     const response = await fetch("http://localhost:3000/api/articles");
     const data = await response.json();
     return {
         props: {
             articles: data.articles
-        }
+        },
+        revalidate: 60
     }
 }
 
-const Articles: React.FC<articlesProps> = ( props: articlesProps ) => {
+const Articles: NextPage<articlesProps> = ( {articles} ) => {
     return (
-        <>
-            {
-                props.articles.map((article: articleProps) => {
-                    return (
-                        <div key={article.article_id}>
-                            <Link href={`/articles/${article.article_id}`} as={`/articles/${article.article_id}`}>
-                                <a>{article.article_title}</a>
-                            </Link>
-                        </div>
-                    )
-                })
-            }
-        </>
+        <div className={styles.container}>
+          {/* This is the head of the DOM, not of the body */}
+          <DefaultHeader/>
+          <DefaultNav/>
+          
+            <main className={styles.main}>
+                {
+                    articles.map((article: articleProps) => {
+                        return (
+                            <div key={article.article_id}>
+                                <Link href={`/articles/${article.article_id}`} as={`/articles/${article.article_id}`}>
+                                    <a>{article.article_title}</a>
+                                </Link>
+                            </div>
+                        )
+                    })
+                }                
+            </main>
+
+            <DefaultFooter />
+      
+        </div>
     )
 };
 
