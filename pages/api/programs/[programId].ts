@@ -1,9 +1,9 @@
 import { NextApiRequest, NextApiResponse } from "next"
 import { data } from '../../../data/dummy_data'
-import { articleProps } from './index'
+import { programProps } from './index'
 
-interface ArticleApiRequest extends NextApiRequest {
-    articleId: number;   
+interface programApiRequest extends NextApiRequest {
+    programId: number;   
 }
 
 type ErrorResponse = {
@@ -12,11 +12,11 @@ type ErrorResponse = {
 }
 
 
-function searchArticleJson<articleProps> (articleId: string) {
-  const article = data.articles.find(article => article.article_id === articleId)
-    if (article) {
+function searchprogramJson<programProps> (programId: string) {
+  const program = data.programs.find(program => program.program_id === programId)
+    if (program) {
       return {
-        ...article
+        ...program
       }
     }
     else {
@@ -25,26 +25,26 @@ function searchArticleJson<articleProps> (articleId: string) {
 }
 
 export default function handler(
-    req: ArticleApiRequest,
-    res: NextApiResponse<articleProps | ErrorResponse>
+    req: programApiRequest,
+    res: NextApiResponse<programProps | ErrorResponse>
   ) {
     const { method } = req
-    const { articleId } = req.query
+    const { programId } = req.query
 
     switch (method) {
       case 'GET':
-        const article = searchArticleJson(String(articleId));
-        if (article == null) {
+        const program = searchprogramJson(String(programId));
+        if (program == null) {
           const response: ErrorResponse = {
             statusCode: 404,
-            message: 'Article not found'
+            message: 'program not found'
           }
           res.status(404).json(response)
           return
         }
 
         res.status(200).json({
-          ...article
+          ...program
         })
         return
         

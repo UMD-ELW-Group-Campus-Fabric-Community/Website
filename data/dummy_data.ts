@@ -16,7 +16,7 @@ export const data = {
   ],
   programs: [
     {
-      program_id: 1,
+      program_id: "1",
       program_name: 'Program 1',
       program_description: 'Program 1 description',
       program_website: 'https://www.program1.com',
@@ -25,15 +25,16 @@ export const data = {
         'Program 1 focus 2',
         'Program 1 focus 3'
       ],
-      department_id: 1,
+      department_id: "1",
       department_name: 'Department 1',
-      organization_id: 1,
+      organization_id: "1",
       organization_name: 'Organization 1',
       organization_website: 'https://www.organization1.com',
     }
   ],
 
-  users: [{
+  users: [
+    {
       "user_id": 1,
       "user_fname": "Haleigh",
       "user_lname": "Verbruggen",
@@ -61,119 +62,8 @@ export const data = {
       "user_email": "agritland3@vkontakte.ru",
       "user_password": "oSPWjzdbK96X",
       "organization_id": "2201"
-    }, {
-      "user_id": 5,
-      "user_fname": "Gladi",
-      "user_lname": "McGrorty",
-      "user_email": "gmcgrorty4@blog.com",
-      "user_password": "1lyGxgy",
-      "organization_id": "4618"
-    }, {
-      "user_id": 6,
-      "user_fname": "Bernadette",
-      "user_lname": "Broadwell",
-      "user_email": "bbroadwell5@ocn.ne.jp",
-      "user_password": "ouBo4WgrY",
-      "organization_id": "4617"
-    }, {
-      "user_id": 7,
-      "user_fname": "Kipper",
-      "user_lname": "Margiotta",
-      "user_email": "kmargiotta6@godaddy.com",
-      "user_password": "gcVLfvVL",
-      "organization_id": "9928"
-    }, {
-      "user_id": 8,
-      "user_fname": "Mandi",
-      "user_lname": "Twinning",
-      "user_email": "mtwinning7@hud.gov",
-      "user_password": "DHMFUMh7K",
-      "organization_id": "0103"
-    }, {
-      "user_id": 9,
-      "user_fname": "Hilarius",
-      "user_lname": "Gouldie",
-      "user_email": "hgouldie8@desdev.cn",
-      "user_password": "T6VarNkB",
-      "organization_id": "5202"
-    }, {
-      "user_id": 10,
-      "user_fname": "Alissa",
-      "user_lname": "McNeilly",
-      "user_email": "amcneilly9@scribd.com",
-      "user_password": "rLp3SRlA",
-      "organization_id": "5077"
-    }, {
-      "user_id": 11,
-      "user_fname": "Cyrille",
-      "user_lname": "Parkins",
-      "user_email": "cparkinsa@paginegialle.it",
-      "user_password": "XPUsJUu9OBoh",
-      "organization_id": "8397"
-    }, {
-      "user_id": 12,
-      "user_fname": "Leigh",
-      "user_lname": "Calbert",
-      "user_email": "lcalbertb@mashable.com",
-      "user_password": "9BbyHpBqCD",
-      "organization_id": "2780"
-    }, {
-      "user_id": 13,
-      "user_fname": "Erie",
-      "user_lname": "Sidney",
-      "user_email": "esidneyc@a8.net",
-      "user_password": "PiGa7DSg",
-      "organization_id": "9657"
-    }, {
-      "user_id": 14,
-      "user_fname": "Eolanda",
-      "user_lname": "MacCauley",
-      "user_email": "emaccauleyd@earthlink.net",
-      "user_password": "BDNtR5V1VDXo",
-      "organization_id": "1133"
-    }, {
-      "user_id": 15,
-      "user_fname": "Jasen",
-      "user_lname": "Drews",
-      "user_email": "jdrewse@google.es",
-      "user_password": "XHjZaV1q8",
-      "organization_id": "3463"
-    }, {
-      "user_id": 16,
-      "user_fname": "Francyne",
-      "user_lname": "Geach",
-      "user_email": "fgeachf@mysql.com",
-      "user_password": "l5f5b2VntY",
-      "organization_id": "4948"
-    }, {
-      "user_id": 17,
-      "user_fname": "Ignatius",
-      "user_lname": "Manis",
-      "user_email": "imanisg@usda.gov",
-      "user_password": "LVmHAK8rmC",
-      "organization_id": "0014"
-    }, {
-      "user_id": 18,
-      "user_fname": "Stephen",
-      "user_lname": "Owlner",
-      "user_email": "sowlnerh@youtube.com",
-      "user_password": "1xwCb0ynhf",
-      "organization_id": "4407"
-    }, {
-      "user_id": 19,
-      "user_fname": "Teodoor",
-      "user_lname": "Lightbown",
-      "user_email": "tlightbowni@blinklist.com",
-      "user_password": "eBnqP13o2",
-      "organization_id": "6406"
-    }, {
-      "user_id": 20,
-      "user_fname": "Salvatore",
-      "user_lname": "Corrao",
-      "user_email": "scorraoj@imgur.com",
-      "user_password": "TpquoQ2mCOD",
-      "organization_id": "9940"
-    }]
+    }
+  ]
     
 
 }

@@ -1,18 +1,22 @@
 // Next.js API route support: https://nextjs.org/docs/api-routes/introduction
 import type { NextApiRequest, NextApiResponse } from 'next'
 
-type Data = {
-  name: string
+type defaultResponse = {
+  statusCode: number;
+  message: string;
 }
 
 export default function handler(
   req: NextApiRequest,
-  res: NextApiResponse<Data>
+  res: NextApiResponse<defaultResponse>
 ) {
   const { method } = req
   switch (method) {
     case 'GET':
-      res.status(200).json({ name: 'John Doe' })
+      res.status(200).json({ 
+        statusCode: 200,
+        message: 'Welcome to the ELWG API! Refer to the documentation for more information.'
+       })
       break
     case 'POST':
       res.status(201).end()
