@@ -53,28 +53,36 @@ export const data = {
       "user_lname": "Verbruggen",
       "user_email": "hverbruggen0@ft.com",
       "user_password": "yfwH7u1DW4Q",
-      "organization_id": "4750"
+      "user_phone": "1-816-816-8161",
+      "organization_id": "4750",
+      "user_level": "admin"
     }, {
       "user_id": 2,
       "user_fname": "Lincoln",
       "user_lname": "Boggs",
       "user_email": "lboggs1@instagram.com",
       "user_password": "jP9VUs",
-      "organization_id": "4190"
+      "user_phone": "1-816-816-8161",
+      "organization_id": "4190",
+      "user_level": "admin"
     }, {
       "user_id": 3,
       "user_fname": "Ulick",
       "user_lname": "Micallef",
       "user_email": "umicallef2@rakuten.co.jp",
       "user_password": "asqceB94Jy",
-      "organization_id": "3167"
+      "user_phone": "1-816-816-8161",
+      "organization_id": "3167",
+      "user_level": "admin"
     }, {
       "user_id": 4,
       "user_fname": "Allie",
       "user_lname": "Gritland",
       "user_email": "agritland3@vkontakte.ru",
       "user_password": "oSPWjzdbK96X",
-      "organization_id": "2201"
+      "user_phone": "1-816-816-8161",
+      "organization_id": "2201",
+      "user_level": "admin"
     }
   ]
     

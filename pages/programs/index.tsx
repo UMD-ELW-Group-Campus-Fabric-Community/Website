@@ -1,5 +1,5 @@
 import Link from "next/link";
-import { NextPage, GetStaticProps, GetStaticPropsContext } from "next";
+import { NextPage, GetStaticProps } from "next";
 import React from "react";
 
 import styles from '../../styles/Home.module.css'
@@ -27,8 +27,8 @@ type programsProps = {
     programs: programProps[];
 }
 
-export const getStaticProps: GetStaticProps = async ( context: GetStaticPropsContext ) => {
-    const response = await fetch("http://localhost:3000/api/programs", {
+export const getStaticProps: GetStaticProps = async ( ) => {
+    const response = await fetch("http://localhost:1433/api/programs", {
         method: 'GET',
         headers: {
             'Content-Type': 'application/json'
@@ -42,12 +42,14 @@ export const getStaticProps: GetStaticProps = async ( context: GetStaticPropsCon
     }
     return {
         props: {
-            programs: data.programs
-        }
+            programs: data
+        },
+        revalidate: 1 * 60 * 60 // 1 hour
     }
 }
 
 const Programs: NextPage<programsProps> = ( {programs} ) => {
+
     return (
         <div className={styles.container}>
           {/* This is the head of the DOM, not of the body */}

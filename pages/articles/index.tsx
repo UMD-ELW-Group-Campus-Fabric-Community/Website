@@ -1,5 +1,7 @@
 import Link from "next/link";
-import { NextPage, GetStaticProps, GetStaticPropsContext } from "next";
+import { 
+    NextPage, 
+    GetStaticProps } from "next";
 import React from "react";
 
 import styles from '../../styles/Home.module.css'
@@ -7,7 +9,6 @@ import styles from '../../styles/Home.module.css'
 import DefaultHeader from '../../library/utils/metadata/header'
 import DefaultNav from '../../library/components/bars/nav'
 import DefaultFooter from '../../library/components/bars/footer'
-
 
 
 export type articleProps = {
@@ -28,8 +29,8 @@ type articlesProps = {
     articles: articleProps[];
 }
 
-export const getStaticProps: GetStaticProps = async ( context: GetStaticPropsContext ) => {
-    const response = await fetch("http://localhost:3000/api/articles", {
+export const getStaticProps: GetStaticProps<articlesProps> = async () => {
+    const response = await fetch("http://localhost:1433/api/articles", {
         method: 'GET',
         headers: {
             'Content-Type': 'application/json'
@@ -43,12 +44,15 @@ export const getStaticProps: GetStaticProps = async ( context: GetStaticPropsCon
     }
     return {
         props: {
-            articles: data.articles
-        }
+            articles: data
+        },
+        revalidate: 1 * 60 * 60 // 1 hour
     }
 }
 
+
 const Articles: NextPage<articlesProps> = ( {articles} ) => {
+    
     return (
         <div className={styles.container}>
           {/* This is the head of the DOM, not of the body */}

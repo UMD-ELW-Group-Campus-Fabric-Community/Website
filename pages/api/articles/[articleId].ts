@@ -28,28 +28,28 @@ export default function handler(
     req: ArticleApiRequest,
     res: NextApiResponse<articleProps | ErrorResponse>
   ) {
-    const { method } = req
-    const { articleId } = req.query
+  const { method } = req
+  const { articleId } = req.query
 
-    switch (method) {
-      case 'GET':
-        const article = searchArticleJson(String(articleId));
-        if (article == null) {
-          const response: ErrorResponse = {
-            statusCode: 404,
-            message: 'Article not found'
-          }
-          res.status(404).json(response)
-          return
+  switch (method) {
+    case 'GET':
+      const article = searchArticleJson(String(articleId));
+      if (article == null) {
+        const response: ErrorResponse = {
+          statusCode: 404,
+          message: 'Article not found'
         }
+        res.status(404).json(response)
+        return
+      }
 
-        res.status(200).json({
-          ...article
-        })
-        break
-      default:
-        res.setHeader('Allow', ['GET'])
-        res.status(405).end(`Method ${method} Not Allowed`)
-        break
-    }
+      res.status(200).json({
+        ...article
+      })
+      break
+    default:
+      res.setHeader('Allow', ['GET'])
+      res.status(405).end(`Method ${method} Not Allowed`)
+      break
   }
+}
