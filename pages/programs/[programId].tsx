@@ -38,7 +38,7 @@ export const getStaticPaths: GetStaticPaths = async (): Promise<GetStaticPathsRe
 
     const data = await response.json();
     return {
-        paths: data.map((program: programProps) => ({
+        paths: data.body.map((program: programProps) => ({
             params: {
                 programId: program.program_id.toString()
             }   
@@ -57,7 +57,7 @@ export const getStaticProps: GetStaticProps<programProps> = async (context: GetS
         }
     });
     const data = await response.json();
-    const program = data[0];
+    const program = data.body[0];
 
     if (response.status != 200) {
         console.log("No program found");

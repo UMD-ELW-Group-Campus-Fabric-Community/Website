@@ -49,7 +49,6 @@ export const getStaticProps: GetStaticProps = async ( ) => {
 }
 
 const Programs: NextPage<programsProps> = ( {programs} ) => {
-
     return (
         <div className={styles.container}>
           {/* This is the head of the DOM, not of the body */}
@@ -58,7 +57,8 @@ const Programs: NextPage<programsProps> = ( {programs} ) => {
           
             <main className={styles.main}>
                 {
-                    programs.map((program: programProps) => {
+                    // @ts-ignore
+                    programs.body.map((program: programProps) => {
                         return (
                             <div key={program.program_id}>
                                 <Link href={`/programs/${program.program_id}`} as={`/programs/${program.program_id}`}>

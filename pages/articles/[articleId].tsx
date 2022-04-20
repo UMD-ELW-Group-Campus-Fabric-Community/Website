@@ -40,7 +40,8 @@ export const getStaticPaths: GetStaticPaths = async (): Promise<GetStaticPathsRe
     });
     const data = await response.json();
     return {
-        paths: data.map((article: articleProps) => ({
+        
+        paths: data.body.map((article: articleProps) => ({
             params: {
                 articleId: article.article_id.toString()
             }
@@ -60,7 +61,7 @@ export const getStaticProps: GetStaticProps<articleProps> = async (context: GetS
     });
 
     const data = await response.json();
-    const article = data[0];
+    const article = data.body[0];
     
     if (data.length === 0) {
         console.log("No article found");
@@ -76,8 +77,7 @@ export const getStaticProps: GetStaticProps<articleProps> = async (context: GetS
     }
 }
 
-const Article: NextPage<articleProps> = ( article ) => {
-    
+const Article: NextPage<articleProps> = ( article ) => {;
     const router = useRouter();
 
     if(router.isFallback) {

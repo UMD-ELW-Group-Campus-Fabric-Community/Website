@@ -44,7 +44,7 @@ export const getStaticProps: GetStaticProps<articlesProps> = async () => {
     }
     return {
         props: {
-            articles: data
+            articles: data.body
         },
         revalidate: 1 * 60 * 60 // 1 hour
     }
@@ -52,7 +52,6 @@ export const getStaticProps: GetStaticProps<articlesProps> = async () => {
 
 
 const Articles: NextPage<articlesProps> = ( {articles} ) => {
-    
     return (
         <div className={styles.container}>
           {/* This is the head of the DOM, not of the body */}
@@ -60,7 +59,7 @@ const Articles: NextPage<articlesProps> = ( {articles} ) => {
           <DefaultNav/>
           
             <main className={styles.main}>
-                {
+                {   
                     articles.map((article: articleProps) => {
                         return (
                             <div key={article.article_id}>
