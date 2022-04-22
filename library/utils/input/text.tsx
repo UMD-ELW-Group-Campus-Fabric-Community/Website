@@ -5,20 +5,39 @@ type textInputProps = {
     id: string;
     label: string;
     placeholder: string;
-    onChange: (event: React.ChangeEvent<HTMLInputElement>) => void;
+    onChange?: (event: React.ChangeEvent<HTMLInputElement>) => void;
     required?: boolean;
+    type?: string;
 }   
 
-const TextInput = (props: textInputProps) => {
-    const { name, id, label, placeholder, onChange, required } = props;
+export const LongTextInput = (props: textInputProps) => {
+    const { name, id, label, placeholder, onChange, required, type } = props;
     return (
         <fieldset>
             <label htmlFor={id}>
-                <p>{label}</p>
+                <p>{label} {required ? <span style={{ color: 'red' }}>*</span> : null}</p>
+            </label>
+            <textarea
+                name={name}
+                id={id}
+                placeholder={placeholder}
+                required={required}
+            />
+        </fieldset>
+    )
+}
+
+
+const TextInput = (props: textInputProps) => {
+    const { name, id, label, placeholder, onChange, required, type } = props;
+    return (
+        <fieldset>
+            <label htmlFor={id}>
+                <p>{label} {required?<span style={{color:'red'}}>*</span>: null}</p>
                 <input
                     name={name}
                     id={id}
-                    type="text" 
+                    type= {type?type:'text'}
                     placeholder={placeholder}
                     onChange={onChange}
                     required={required}
@@ -27,4 +46,5 @@ const TextInput = (props: textInputProps) => {
         </fieldset>
     )
 }
+
 export default TextInput;

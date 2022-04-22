@@ -12,7 +12,15 @@ export const navRoutes = [
         route: "/programs"
     },
     {
-        name: "Work Requests",
-        route: "/workreq"
+        name: "Inquiry",
+        route: "/inquiry"
     },
+    // {
+    //     name: "Search",
+    //     route: "/search",
+    //     icon: {
+    //         url: "/static/icons/search.svg",
+    //         alt: "search"
+    //     }
+    // }
 ]

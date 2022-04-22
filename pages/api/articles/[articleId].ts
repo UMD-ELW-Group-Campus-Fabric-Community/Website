@@ -42,7 +42,6 @@ export default function handler(
         res.status(404).json(response)
         return
       }
-
       res.status(200).json({
         ...article
       })

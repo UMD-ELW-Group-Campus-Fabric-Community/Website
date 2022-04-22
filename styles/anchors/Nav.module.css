@@ -1,0 +1,127 @@
+.navContainer{
+    padding : 0;
+    margin : 0;
+
+    display: inline-flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width : 100%;
+}
+
+.topBar {
+    display: inline-flex;
+    align-items: center;
+    padding: 0px 50px;
+
+    width: 100%;
+    height: 100%;
+
+    min-height: 50px;
+
+    font-weight: lighter;
+    font-size: .5rem;
+    
+}
+
+.bottomBar {
+    display: inline-flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0px 50px 0px 50px;
+
+    width: 100%;
+    height: 100%;
+
+    min-height: 60px;
+    max-height: 100px;
+}
+
+.bottomBar .logo a{
+    display: flex;
+    align-items: center;
+    flex-direction: row;
+
+
+    width: 100%;
+    height: 100%;
+    max-width: 400px;
+    min-height: 100px;
+}
+
+.bottomBar .logo img {
+    width: 100%;
+    height: 100%;
+
+    max-width: 75px;
+    max-height: 75px;
+
+    aspect-ratio: 1;
+}
+.bottomBar .logo h1 {
+    font-size: 1.2rem;
+    margin: 0;
+}
+
+.bottomBar nav ul {
+    display: inline-flex;
+    align-items: center;
+    justify-content: space-around;
+   
+    width: 100%;
+    height: 100%;
+
+    min-height: 50px;
+
+}
+
+.bottomBar nav ul li {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0px 30px;
+
+    width: auto;
+    height: 100%;
+
+    min-height: 80px;
+}
+
+
+@media (max-width: 720px) {
+    .navContainer{
+      width: 100%;
+      flex-direction: column;
+    }
+    .topBar {
+        flex-direction: column;
+        padding: 10px 20px;
+    }
+    .bottomBar {
+        flex-direction: column;
+        width: 100%;
+        max-height: 300px;
+    }
+    .bottomBar nav {
+        flex-direction: row;
+        width: 100%;
+        max-height: 300px;
+        align-items: center;
+        justify-content: center;
+
+        padding: 0;
+        margin: 0;
+    }
+    .bottomBar nav ul {
+        width: 100%;
+        max-height: 100px;
+        justify-content: center;
+        padding: 0;
+    }
+    .bottomBar nav ul li {
+        width: 100%;
+        max-height: 100px;
+        padding: 0px 10px 0px 10px;
+    }
+}

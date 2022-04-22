@@ -10,13 +10,11 @@ import DefaultFooter from '../library/components/bars/footer'
 
 const _404 = () => {
 
-    const router = useRouter()
-
-    useEffect(() => {
-        const timeout = setTimeout(() => {
-            router.push('/')
-        }, 5000)
-    }, [])
+    // useEffect(() => {
+    //     const timeout = setTimeout(() => {
+    //         router.push('/')
+    //     }, 5000)
+    // }, [])
 
     
     return (
@@ -24,7 +22,7 @@ const _404 = () => {
           {/* This is the head of the DOM, not of the body */}
             <DefaultHeader/>
             <DefaultNav/>
-            <main>
+            <main className={styles.main}>
                 <h1>404</h1>
                 <p> 
                     Page not found. Hold tight, you are being redirected...
