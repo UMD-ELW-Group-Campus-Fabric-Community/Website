@@ -37,4 +37,10 @@ export const inputColors = {
             text: "#222222"
         },
     },
+    fileInput : {
+        primary: "#fff",
+        secondary: "#f9f9f9",
+        text: "#222222"
+
+    }
 }

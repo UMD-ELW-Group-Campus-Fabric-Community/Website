@@ -63,11 +63,26 @@
 }
 
 
-@media screen and (max-width: 720) {
+@media (max-width: 480px) {
+
+    .customForm {
+        padding: 20px 10px;
+    }
+
     .dropGroup,
     .nameGroup {
         flex-direction: column;
-        background-color: blue;
     } 
+
+    .dropGroup > :nth-child(n),
+    .nameGroup > :nth-child(n) {
+        width: 100%;
+    }
+
+    .customForm form > button{
+        float: none;
+        margin: 10px auto;
+        width: 100%;
+    }
 }
     

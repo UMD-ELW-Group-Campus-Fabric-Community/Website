@@ -61,10 +61,7 @@ const TextInput = (props: textInputProps) => {
     const { name, id, label, placeholder, onChange, required, type } = props;
     return (
         <div>
-            <fieldset style={{
-                width: '100%',
-                height: '100%',
-            }}>
+            <fieldset>
                 <label htmlFor={id}>
                     <p>{label} {required?<span style={{color:'red'}}>*</span>: null}</p>
                     <input

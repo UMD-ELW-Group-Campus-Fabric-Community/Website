@@ -16,18 +16,16 @@ const Dropdown = (props: dropdownProps) => {
     const { name, id, label, values, required } = props;
     return (
         <div>
-            <fieldset style={{
-                width: '100%',
-                height: '100%',
-            }}>
+            <fieldset>
                 <label htmlFor={id}>
                     <p>{label} {required ? <span style={{ color: 'red' }}>*</span> : null}</p>
                 </label>
                     <select
                         name={name}
                         id={id}
+                        defaultValue='none'
                         >
-                            <option value={'none'} selected disabled hidden>Select an Option</option>
+                            <option value={'none'} disabled hidden>Select an Option</option>
                         {
                             values.map((value, index) => {
                                 return (

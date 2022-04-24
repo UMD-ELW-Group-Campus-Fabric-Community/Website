@@ -1,8 +1,86 @@
-
 .contextParagraph {
     font-size: .8em;
     font-style: italic;
     font-weight: 400;
     padding-right: 20px;
     margin-left: auto;
+}
+
+.fileContainer {
+    display: inline-flex;
+    flex-direction: column;
+    align-content: center;
+    justify-content: center;
+    width: 100%;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    
+}
+
+.fileContainer > table {
+    margin: 20px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    font: inherit;
+    font-size: .8em;
+}
+
+.fileContainer > table th:nth-child(1) {
+    width: 30%;
+    margin: 20px;
+}
+.fileContainer > table tr {
+    background-color: white;
+    height: 20px;
+
+}
+.fileContainer > table tr > td{
+    line-height: 0;
+    padding: 5px;
+}
+
+.fileContainer > table tr > td:nth-child(1) {
+    width: 20%;
+    height: 40px;
+}
+.fileContainer > table tr > td:nth-child(2) {
+    width: 40%;
+    height: 40px;
+}
+
+
+.fileContainer > table td button  {
+    width: auto;
+    height: 20px;
+    padding: 5px;
+    margin: 0%;
+}
+
+.dropZone {
+    border: 2px dashed #ccc;
+    border-radius: 5px;
+    padding: 30px 20px;
+    margin: 20px;
+}
+
+.dropZone:hover {
+    cursor: pointer;
+    border: 2px dashed rgb(0, 217, 255);
+    background-color: white;
+}
+
+.dropZone > p {
+    font-size: .8em;
+    font-style: normal;
+    font-weight: 400;
+    padding-right: 20px;
+    margin-left: auto;
+
+    text-align: center;
+}
+
+@media (max-width: 768px) {
+    .fileContainer {
+        display: none;
+    }
 }
