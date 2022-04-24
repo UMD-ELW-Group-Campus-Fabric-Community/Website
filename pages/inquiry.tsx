@@ -25,14 +25,14 @@ const WorkRequestForm: NextPage = () => {
     });
 
     const initValues = {
-        fname: 'Enter your first name',
-        lname: 'Enter your last name',
-        email: 'Enter your email',
-        cname: 'Enter your company name',
-        website: 'Enter your company website',
-        budget: 'Enter your budget',
-        poi: "Enter your program of interest",
-        message: "Enter any additional information, comments, or questions you'd like to share with us"
+        fname: 'Enter your first name...',
+        lname: 'Enter your last name...',
+        email: 'Enter your email...',
+        cname: 'Enter your company name...',
+        website: 'Enter your company website...',
+        budget: 'Enter your budget...',
+        poi: 'Enter your program of interest...',
+        message: 'Enter any additional information, comments, or questions you\'d like to share with us...'
     }
 
     const { values, onChange, onSubmit } = useForm(

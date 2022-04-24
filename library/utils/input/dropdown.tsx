@@ -27,6 +27,7 @@ const Dropdown = (props: dropdownProps) => {
                         name={name}
                         id={id}
                         >
+                            <option value={'none'} selected disabled hidden>Select an Option</option>
                         {
                             values.map((value, index) => {
                                 return (
