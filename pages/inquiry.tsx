@@ -10,7 +10,9 @@ import DefaultHeader from '../library/utils/metadata/header'
 import DefaultNav from '../library/components/bars/nav'
 import DefaultFooter from '../library/components/bars/footer'
 
-import styles from '../styles/Home.module.css'
+import defaultStyle from '../styles/pages/Default.module.css'
+import style from '../styles/pages/Inquiry.module.css'
+import { formColors } from '../styles/_colors';
 
 const WorkRequestForm: NextPage = () => {
 
@@ -63,7 +65,7 @@ const WorkRequestForm: NextPage = () => {
     }
 
     return (
-        <div className={styles.container}>
+        <div className={defaultStyle.container}>
             {/* This is the head of the DOM, not of the body */}
             <DefaultHeader/>
             <DefaultNav/>
@@ -71,9 +73,12 @@ const WorkRequestForm: NextPage = () => {
                 isShowNotification &&
                 <PopUp {...notification} />
             }
-            <main className={styles.main}>
-                <h3>Interested in learning more?</h3>
-                <div>
+            <main className={defaultStyle.main}>
+                <div className={style.customForm} style={{
+                    backgroundColor: formColors.secondary.background,
+                    color: formColors.secondary.text
+                }}>
+                    <p className={style.requiredDec}>(Required Field) *</p>
                     <form onSubmit={onSubmit}>
                         <TextInput 
                             name="name" 
@@ -91,62 +96,66 @@ const WorkRequestForm: NextPage = () => {
                             onChange={onChange}
                             required={false} />
 
-                        <TextInput
-                            name="fname"
-                            id="fname"
-                            label="First Name"
-                            placeholder={initValues.fname}
-                            onChange={onChange}
-                            required={true} />
+                        <div className={style.nameGroup}>
+                            <TextInput
+                                name="fname"
+                                id="fname"
+                                label="First Name"
+                                placeholder={initValues.fname}
+                                onChange={onChange}
+                                required={true} />
 
-                        <TextInput 
-                            name="lname"
-                            id="lname"
-                            label="Last Name"
-                            placeholder={initValues.lname}
-                            onChange={onChange}
-                            required={true} />
+                            <TextInput 
+                                name="lname"
+                                id="lname"
+                                label="Last Name"
+                                placeholder={initValues.lname}
+                                onChange={onChange}
+                                required={true} />
+                        </div>
 
                         <TextInput
                             name="email"
                             id="email"
-                            type="email"
+                            type="text"
                             label="Email"
                             placeholder={initValues.email}
                             onChange={onChange}
                             required={true} />
 
-                        <TextInput
-                            name="budget"
-                            id="budget"
-                            label="Budget"
-                            placeholder={initValues.budget}
-                            onChange={onChange}
-                            required={false} />
-                            
-                        <Dropdown
-                            name="poi"
-                            id="poi"
-                            label="Program of Interest"
-                            values={[
-                                { value: 'web', label: 'Web Development' },
-                                { value: 'mobile', label: 'Mobile Development' },
-                                { value: 'game', label: 'Game Development' },
-                            ]} 
-                         />
+                        <div className={style.dropGroup}>
+                            <TextInput
+                                name="budget"
+                                id="budget"
+                                label="Budget"
+                                placeholder={initValues.budget}
+                                onChange={onChange}
+                                required={false} />
+                                
+                            <Dropdown
+                                name="poi"
+                                id="poi"
+                                label="Program of Interest"
+                                values={[
+                                    { value: 'web', label: 'Web Development' },
+                                    { value: 'mobile', label: 'Mobile Development' },
+                                    { value: 'game', label: 'Game Development' },
+                                ]}
+                                />
 
-                        <Dropdown
-                            name="timeframe"
-                            id="timeframe"
-                            label="Project Timeframe"
-                            values={[
-                                { value: '1', label: '1 Month' },
-                                { value: '3', label: '3 Months' },
-                                { value: '6', label: '6 Months' },
-                                { value: '12', label: '12 Months' },
-                            ]}
-                        />
-                        
+                            <Dropdown
+                                name="timeframe"
+                                id="timeframe"
+                                label="Timeframe"
+                                values={[
+                                    { value: '1', label: '1 Month' },
+                                    { value: '3', label: '3 Months' },
+                                    { value: '6', label: '6 Months' },
+                                    { value: '12', label: '12 Months' },
+                                ]}
+                            />                            
+                        </div>
+
                         <LongTextInput
                             name="message"
                             id="message"
@@ -154,8 +163,12 @@ const WorkRequestForm: NextPage = () => {
                             placeholder={initValues.message}
                             required={true} />
 
-
-                        <button type="submit">Submit</button>
+                        <button type="reset" style={{
+                            backgroundColor: formColors.button.warning,
+                        }}>Clear</button>
+                        <button type="submit" style={{
+                            backgroundColor: formColors.button.primary,
+                        }}>Submit</button>
                     </form>
                 </div>
             </main>

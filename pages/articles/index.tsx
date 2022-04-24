@@ -4,12 +4,11 @@ import {
     GetStaticProps } from "next";
 import React from "react";
 
-import styles from '../../styles/Home.module.css'
-
 import DefaultHeader from '../../library/utils/metadata/header'
 import DefaultNav from '../../library/components/bars/nav'
 import DefaultFooter from '../../library/components/bars/footer'
 
+import defaultStyle from '../../styles/pages/Default.module.css'
 
 export type articleProps = {
     user_id:              number;
@@ -53,12 +52,12 @@ export const getStaticProps: GetStaticProps<articlesProps> = async () => {
 
 const Articles: NextPage<articlesProps> = ( {articles} ) => {
     return (
-        <div className={styles.container}>
+        <div className={defaultStyle.container}>
           {/* This is the head of the DOM, not of the body */}
           <DefaultHeader/>
           <DefaultNav/>
           
-            <main className={styles.main}>
+            <main className={defaultStyle.main}>
                 {   
                     articles.map((article: articleProps) => {
                         return (

@@ -13,3 +13,28 @@ export const footerColors = {
     primary : {...navColors.secondary},
     secondary : {...navColors.secondary}
 }
+
+export const formColors = {
+    primary : {
+        background: "#fff",
+        text: "#222222"
+    },
+    secondary : { 
+        background: "#f9f9f9",
+        text: "#222222"
+    },
+    button : {
+        primary: "#FFC845",
+        secondary: "#FFC845",
+        warning: "#FD9191"
+    }
+}
+
+export const inputColors = {
+    textInput : {
+        primary : {
+            background: "#fff",
+            text: "#222222"
+        },
+    },
+}

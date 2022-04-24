@@ -1,0 +1,72 @@
+.customForm {
+    width: 80%;
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 70px 50px;
+    border: 1px solid #ccc;
+
+    display: inline-flex;
+    flex-direction: column;
+    
+}
+
+.requiredDec {
+    color: red;
+    font-size: .7em;
+    font-style: italic;
+    padding-right: 20px;
+    margin-left: auto;
+}
+
+.dropGroup {
+    width: 100%;
+    display: inline-flex;
+    flex-direction: row;
+
+    justify-content: space-evenly;
+}
+
+.dropGroup > :nth-child(n) {
+    width: 33%;
+}
+
+.nameGroup {
+    width: 100%;
+    display: inline-flex;
+    flex-direction: row;
+
+    justify-content: space-evenly;
+}
+
+.nameGroup > :nth-child(n) {
+    width: 50%;   
+}
+
+.customForm form button{
+    width: auto;
+    margin: 20px;
+    padding: 10px 25px;
+    border: none;
+    border-radius: 4px;
+    color: #000;
+    font-size: 1em;
+    font-weight: 500;
+    cursor: pointer;    
+}
+
+.customForm form > button[type='reset']{
+    float: left;
+}
+.customForm form > button[type='submit'] {
+    float: right;
+}
+
+
+@media screen and (max-width: 720) {
+    .dropGroup,
+    .nameGroup {
+        flex-direction: column;
+        background-color: blue;
+    } 
+}
+    

@@ -8,12 +8,11 @@ import { programProps } from './index';
 import { ParsedUrlQuery } from "querystring";
 import { useRouter } from "next/router";
 
-import styles from '../../styles/Home.module.css'
-
 import DefaultHeader from '../../library/utils/metadata/header'
 import DefaultNav from '../../library/components/bars/nav'
 import DefaultFooter from '../../library/components/bars/footer'
 
+import defaultStyle from '../../styles/pages/Default.module.css'
 
 /*
     NextJS will call this function to get the list of all the program ids.
@@ -82,12 +81,12 @@ const Program: NextPage<programProps> = ( program ) => {
     }
 
     return (
-        <div className={styles.container}>
+        <div className={defaultStyle.container}>
             {/* This is the head of the DOM, not of the body */}
             <DefaultHeader/>
             <DefaultNav/>
             
-            <main className={styles.main}>
+            <main className={defaultStyle.main}>
                 <h1>{program.program_name}</h1>
                 <p>{program.program_description}</p>
             </main>

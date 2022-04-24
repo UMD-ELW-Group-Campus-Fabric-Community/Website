@@ -14,7 +14,7 @@ import DefaultHeader from '../../library/utils/metadata/header'
 import DefaultNav from '../../library/components/bars/nav'
 import DefaultFooter from '../../library/components/bars/footer'
 
-import styles from '../../styles/Home.module.css'
+import defaultStyle from '../../styles/pages/Default.module.css'
 
 
 /*
@@ -85,12 +85,12 @@ const Article: NextPage<articleProps> = ( article ) => {;
     }
 
     return (
-        <div className={styles.container}>
+        <div className={defaultStyle.container}>
             {/* This is the head of the DOM, not of the body */}
             <DefaultHeader/>
             <DefaultNav/>
             
-            <main className={styles.main}>
+            <main className={defaultStyle.main}>
                 <h1>{article.article_title}</h1>
                 <p>{article.article_content}</p>
             </main>
