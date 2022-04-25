@@ -1,5 +1,5 @@
-import { NextPage } from 'next';
-import React, { useState } from 'react';
+import { NextPage, GetStaticProps } from 'next';
+import React, { useRef, useState } from 'react';
 
 import useForm, { formResponse } from '../library/components/panels/form';
 import PopUp from '../library/components/panels/notification';
@@ -16,8 +16,53 @@ import style from '../styles/pages/Inquiry.module.css'
 import { formColors } from '../styles/_colors';
 import DragDrop from '../library/utils/input/dragdrop';
 
-const WorkRequestForm: NextPage = () => {
+type program = {
+    value: string;
+    label: string;
+}
 
+type inquiryProps = {
+    programInterests: program[];
+}
+
+export const getStaticProps: GetStaticProps<inquiryProps> = async() => {
+    // const results = await fetch('https://api.covid19india.org/data.json', {
+    //     method: 'GET',
+    //     headers: {
+    //         'Content-Type': 'application/json'
+    //     }
+    // })
+    // const data = await results.json()
+
+
+    return await {
+        props: {
+            // Switch out to API call data
+            // programInterests: data.body
+
+            programInterests: [
+                {
+                    value: 'data-analytics',
+                    label: 'Data Analytics/Visualization'
+                },
+                {
+                    value: 'web-development',
+                    label: 'Web Development'
+                },
+                {
+                    value: 'database-design',
+                    label: 'Database Design'
+                },
+                {
+                    value: 'other',
+                    label: 'Other'
+                }
+            ]
+        }
+    }
+}
+
+const WorkRequestForm: NextPage<inquiryProps> = ({ programInterests }) => {
     const [isShowNotification, setIsShowNotification] = useState(false);
     const [notification, setNotification] = useState({
         title: '',
@@ -25,6 +70,7 @@ const WorkRequestForm: NextPage = () => {
         redirect: '/inquiry',
         callback: popup_callback
     });
+    const form = useRef<HTMLFormElement>(null);
 
     const initValues = {
         fname: 'Enter your first name...',
@@ -53,6 +99,7 @@ const WorkRequestForm: NextPage = () => {
                 title: 'Success',
                 message: 'Request submitted. We will get back to you shortly.'
             });
+            form.current?.reset();
         } else {
             setNotification({
                 ...notification,
@@ -82,7 +129,9 @@ const WorkRequestForm: NextPage = () => {
                     color: formColors.secondary.text
                 }}>
                     <p className={style.requiredDec}>(Required Field) *</p>
-                    <form onSubmit={onSubmit}>
+                    <form onSubmit={onSubmit}
+                        ref={form}
+                    >
                         <div className={style.nameGroup}>
                             <TextInput
                                 name="fname"
@@ -139,11 +188,7 @@ const WorkRequestForm: NextPage = () => {
                                 name="poi"
                                 id="poi"
                                 label="Program of Interest"
-                                values={[
-                                    { value: 'web', label: 'Web Development' },
-                                    { value: 'mobile', label: 'Mobile Development' },
-                                    { value: 'game', label: 'Game Development' },
-                                ]}
+                                values={programInterests}
                                 />
 
                             <Dropdown
@@ -155,6 +200,8 @@ const WorkRequestForm: NextPage = () => {
                                     { value: '3', label: '3 Months' },
                                     { value: '6', label: '6 Months' },
                                     { value: '12', label: '12 Months' },
+                                    { value: 'other', label: 'Other' },
+
                                 ]}
                             />                            
                         </div>

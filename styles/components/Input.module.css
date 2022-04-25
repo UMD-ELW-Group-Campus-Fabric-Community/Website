@@ -7,6 +7,7 @@
 }
 
 .fileContainer {
+    /* margin: 7px; */
     display: inline-flex;
     flex-direction: column;
     align-content: center;
@@ -50,8 +51,11 @@
 
 
 .fileContainer > table td button  {
-    width: auto;
-    height: 20px;
+    position: relative;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 80%;
+    height: 30px;
     padding: 5px;
     margin: 0%;
 }

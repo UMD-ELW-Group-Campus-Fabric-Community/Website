@@ -24,7 +24,6 @@ const DragDrop: React.FC = () => {
             reader.onerror = () => console.log('file reading has failed');
             reader.onload = () => {
                 const binaryStr = reader.result;
-                console.log(binaryStr);
             };
             reader.readAsArrayBuffer(file);
         });
@@ -51,59 +50,66 @@ const DragDrop: React.FC = () => {
 
 
     return (
-        <div className={style.fileContainer} style={{
-            backgroundColor: inputColors.fileInput.primary,
-        }}>
-        
-            <div {...getRootProps()} 
-                className={style.dropZone}
-                style={{
-                    backgroundColor: inputColors.fileInput.secondary
-                }}>
-                <input {...getInputProps()} />
-                {
-                isDragActive ?
-                    <p>Drop the files here ...</p> :
-                    <p>
-                        Upload files <br/>
-                        <em> (Max: 4 files, only xlsx, pdf, docx, and pptx).</em>
-                        
-                    </p>
-                }
-            </div>
-            {
-                files.length > 0 &&
-                <table 
-                    style={{
-                        backgroundColor: inputColors.fileInput.secondary
+        <div>
+            <fieldset >
+                <label htmlFor='fileUpload'>
+                    <p>File Upload</p>
+                </label>
+                <div id='fileUpload' className={style.fileContainer} style={{
+                        backgroundColor: inputColors.fileInput.primary,
                     }}>
-                    <thead>
-                        <tr>
-                            <th>Delete</th>
-                            <th>Name</th>
-                            <th>Type</th>
-                            <th>Size (kb)</th>
-                        </tr>
-                    </thead>
-                    <tbody>
+
+                    <div {...getRootProps()} 
+                        className={style.dropZone}
+                        style={{
+                            backgroundColor: inputColors.fileInput.secondary
+                        }}>
+                        <input {...getInputProps()} />
                         {
-                            files.map((file:File, index:number) => (
-                                <tr key={index}>
-                                    <td>
-                                        <button onClick={() => setFiles(files.filter(f => f.name !== file.name))}>
-                                            Delete
-                                        </button>
-                                    </td>
-                                    <td>{file.name}</td>
-                                    <td>{file.type}</td>
-                                    <td>{Math.round(file.size/1000)}</td>
-                                </tr>
-                            ))
+                        isDragActive ?
+                            <p>Drop the files here ...</p> :
+                            <p>
+                                Upload files <br/>
+                                <em> (Max: 4 files, only xlsx, pdf, docx, and pptx).</em>
+                                
+                            </p>
                         }
-                    </tbody>
-                </table>
-            }
-            
+                    </div>
+                    {
+                        files.length > 0 &&
+                        <table 
+                            style={{
+                                backgroundColor: inputColors.fileInput.secondary
+                            }}>
+                            <thead>
+                                <tr>
+                                    <th>Delete</th>
+                                    <th>Name</th>
+                                    <th>Size (kb)</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                {
+                                    files.map((file:File, index:number) => (
+                                        <tr key={index}>
+                                            <td>
+                                                <button onClick={() => setFiles(files.filter(f => f.name !== file.name))}>
+                                                    Delete
+                                                </button>
+                                            </td>
+                                            <td>{file.name}</td>
+                                            <td>{
+                                                Math.round(file.size / 10) / 100
+                                            }</td>
+                                        </tr>
+                                    ))
+                                }
+                            </tbody>
+                        </table>
+                    }
+                
+                </div>
+            </fieldset>
         </div>
     )
 }

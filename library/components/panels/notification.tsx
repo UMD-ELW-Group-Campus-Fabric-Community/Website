@@ -1,6 +1,9 @@
 import React, { useState } from "react";
 import { useRouter } from 'next/router';
 
+import style from '../../../styles/components/Popup.module.css'
+import { formColors } from '../../../styles/_colors';
+
 type popUpProps = {
     title: string;
     message: string;
@@ -21,13 +24,16 @@ const PopUp = (props: popUpProps) => {
      }
 
     return (
-        <div className="popup" style={{
+        <div className={style.popup} style={{
             display: isShown ? 'block' : 'none'
         }}>
-            <div className="popup_inner">
+            <div className={style.popupInner}>
                 <h1>{title}</h1>
                 <p>{message}</p>
-                <button onClick={closePopUp}>Close</button>
+                <button onClick={closePopUp} style={{
+                    backgroundColor: formColors.button.primary,
+                    color: '#000'
+                }}>Close</button>
             </div>
         </div>
     )
