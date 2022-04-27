@@ -5,8 +5,8 @@ import {
 import React from "react";
 
 import DefaultHeader from '../../library/utils/metadata/header'
-import DefaultNav from '../../library/components/bars/nav'
-import DefaultFooter from '../../library/components/bars/footer'
+import DefaultNav, {SubNav} from '../../library/components/anchors/nav'
+import DefaultFooter from '../../library/components/anchors/footer'
 
 import defaultStyle from '../../styles/pages/Default.module.css'
 
@@ -58,11 +58,13 @@ const Articles: NextPage<articlesProps> = ( {articles} ) => {
           <DefaultNav/>
           
             <main className={defaultStyle.main}>
+                <SubNav page="articles"/>
+                <h1>Articles</h1>
                 {   
                     articles.map((article: articleProps) => {
                         return (
                             <div key={article.article_id}>
-                                <Link href={`/articles/${article.article_id}`} as={`/articles/${article.article_id}`}>
+                                <Link href={`/articles/${article.article_title}`} as={`/articles/${article.article_title}`}>
                                     <a>{article.article_title}</a>
                                 </Link>
                             </div>

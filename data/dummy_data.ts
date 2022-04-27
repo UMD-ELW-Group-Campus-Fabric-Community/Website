@@ -45,7 +45,6 @@ export const data = {
       organization_website: 'https://www.organization1.com',
     }
   ],
-
   users: [
     {
       "user_id": 1,

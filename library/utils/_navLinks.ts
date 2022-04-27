@@ -5,22 +5,17 @@ export const navRoutes = [
     },
     {
         name: "Articles",
-        route: "/articles"
+        route: "/articles",
+        full: 'Home/Articles'
     },
     {
         name: "Programs",
-        route: "/programs"
+        route: "/programs",
+        full: 'Home/Programs'
     },
     {
         name: "Inquiry",
-        route: "/inquiry"
+        route: "/inquiry",
+        full: 'Home/Inquiry'
     },
-    // {
-    //     name: "Search",
-    //     route: "/search",
-    //     icon: {
-    //         url: "/static/icons/search.svg",
-    //         alt: "search"
-    //     }
-    // }
 ]

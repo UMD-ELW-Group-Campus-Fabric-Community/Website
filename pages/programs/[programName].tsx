@@ -1,26 +1,24 @@
-import { 
-    NextPage, 
+import { NextPage, 
     GetStaticProps, 
-    GetStaticPropsContext, 
+    GetStaticPropsContext,
     GetStaticPaths,
-    GetStaticPathsResult} from "next";
-import { articleProps } from './index';
+    GetStaticPathsResult } from "next";
+import { programProps } from './index';
 
 import { ParsedUrlQuery } from "querystring";
 import { useRouter } from "next/router";
 
-import Loading from '../../library/components/panels/loading';
 import DefaultHeader from '../../library/utils/metadata/header'
-import DefaultNav from '../../library/components/bars/nav'
-import DefaultFooter from '../../library/components/bars/footer'
+import DefaultNav, { SubNav } from '../../library/components/anchors/nav'
+import DefaultFooter from '../../library/components/anchors/footer'
 
 import defaultStyle from '../../styles/pages/Default.module.css'
 
 
 /*
-    NextJS will call this function to get the list of all the articles ids.
+    NextJS will call this function to get the list of all the program ids.
     This is used to generate the program pages; however, you cannot use this
-    function to generate the program pages from an internal API (e.g. under localhost:3000/articles)
+    function to generate the program pages from an internal API (e.g. under localhost:3000/programs)
 
     To generate the program pages from an internal API, you can just use the server-side
     code to read the program ids from the database and then use the getStaticProps function. 
@@ -31,57 +29,57 @@ import defaultStyle from '../../styles/pages/Default.module.css'
 */
 
 export const getStaticPaths: GetStaticPaths = async (): Promise<GetStaticPathsResult> => {
-    // Call an external API endpoint to get posts
-    const response = await fetch("http://localhost:1433/api/articles", {      
+    const response = await fetch("http://localhost:1433/api/programs", {
         method: 'GET',
         headers: {
             'Content-Type': 'application/json'
         }
     });
+
     const data = await response.json();
+
     return {
-        
-        paths: data.body.map((article: articleProps) => ({
+        paths: data.body.map((program: programProps) => ({
             params: {
-                articleId: article.article_id.toString()
-            }
+                programName: program.program_name.toString()
+            }   
         })),
-        fallback: true
+        fallback: false
     }
 }
 
 
-export const getStaticProps: GetStaticProps<articleProps> = async (context: GetStaticPropsContext) => {
-    const { articleId } = context.params as ParsedUrlQuery;
-    const response = await fetch(`http://localhost:1433/api/articles/${articleId}`,{
+export const getStaticProps: GetStaticProps<programProps> = async (context: GetStaticPropsContext ) => {
+    const { programName } = context.params as ParsedUrlQuery;
+    const response = await fetch(`http://localhost:1433/api/programs/${programName}`,{
         method: 'GET',
         headers: {
             'Content-Type': 'application/json'
         }
     });
-
     const data = await response.json();
-    const article = data.body[0];
-    
-    if (data.length === 0) {
-        console.log("No article found");
+    const program = data.body[0];
+
+    if (response.status != 200) {
+        console.log("No program found");
         return {
             notFound: true
         }
     }
     return {
         props: {
-            ...article
+            ...program
         },
         revalidate: 1 * 60 * 60 // 1 hour
     }
 }
 
-const Article: NextPage<articleProps> = ( article ) => {;
+const Program: NextPage<programProps> = ( program ) => {
+    
     const router = useRouter();
 
     if(router.isFallback) {
-        return <Loading message="Loading article..." />        
+        return <div>Loading...</div>
     }
 
     return (
@@ -89,10 +87,10 @@ const Article: NextPage<articleProps> = ( article ) => {;
             {/* This is the head of the DOM, not of the body */}
             <DefaultHeader/>
             <DefaultNav/>
-            
             <main className={defaultStyle.main}>
-                <h1>{article.article_title}</h1>
-                <p>{article.article_content}</p>
+                <SubNav page="programs" current={program.program_name}/>
+                <h1>{program.program_name}</h1>
+                <p>{program.program_description}</p>
             </main>
 
             <DefaultFooter />   
@@ -101,6 +99,4 @@ const Article: NextPage<articleProps> = ( article ) => {;
         
     )
 };
-
-
-export default Article;
+export default Program;

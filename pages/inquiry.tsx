@@ -5,11 +5,9 @@ import useForm, { formResponse } from '../library/components/panels/form';
 import PopUp from '../library/components/panels/notification';
 import TextInput, {LongTextInput} from '../library/utils/input/text';
 import Dropdown from '../library/utils/input/dropdown';
-import { FileUploader } from 'react-drag-drop-files';
-
 import DefaultHeader from '../library/utils/metadata/header'
-import DefaultNav from '../library/components/bars/nav'
-import DefaultFooter from '../library/components/bars/footer'
+import DefaultNav, { SubNav } from '../library/components/anchors/nav'
+import DefaultFooter from '../library/components/anchors/footer'
 
 import defaultStyle from '../styles/pages/Default.module.css'
 import style from '../styles/pages/Inquiry.module.css'
@@ -123,11 +121,13 @@ const WorkRequestForm: NextPage<inquiryProps> = ({ programInterests }) => {
                 <PopUp {...notification} />
             }
             <main className={defaultStyle.main}>
-                <h2>Interested in learning how we can help?</h2>
+                <SubNav page="inquiry" key={'nav'} />
                 <div className={style.customForm} style={{
                     backgroundColor: formColors.secondary.background,
                     color: formColors.secondary.text
-                }}>
+                }}
+                >
+                    <h2 className={style.title}>Interested in learning more?</h2>
                     <p className={style.requiredDec}>(Required Field) *</p>
                     <form onSubmit={onSubmit}
                         ref={form}

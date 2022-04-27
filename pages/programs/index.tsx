@@ -4,8 +4,8 @@ import React from "react";
 
 
 import DefaultHeader from '../../library/utils/metadata/header'
-import DefaultNav from '../../library/components/bars/nav'
-import DefaultFooter from '../../library/components/bars/footer'
+import DefaultNav, { SubNav } from '../../library/components/anchors/nav'
+import DefaultFooter from '../../library/components/anchors/footer'
 
 import defaultStyle from '../../styles/pages/Default.module.css'
 
@@ -43,7 +43,7 @@ export const getStaticProps: GetStaticProps = async ( ) => {
     }
     return {
         props: {
-            programs: data
+            programs: data.body
         },
         revalidate: 1 * 60 * 60 // 1 hour
     }
@@ -57,12 +57,12 @@ const Programs: NextPage<programsProps> = ( {programs} ) => {
           <DefaultNav/>
           
             <main className={defaultStyle.main}>
+                <SubNav page='programs' />
                 {
-                    // @ts-ignore
-                    programs.body.map((program: programProps) => {
+                    programs.map((program: programProps) => {
                         return (
-                            <div key={program.program_id}>
-                                <Link href={`/programs/${program.program_id}`} as={`/programs/${program.program_id}`}>
+                            <div key={program.program_name}>
+                                <Link href={`/programs/${program.program_name}`} as={`/programs/${program.program_name}`}>
                                     <a>{program.program_name}</a>
                                 </Link>
                             </div>

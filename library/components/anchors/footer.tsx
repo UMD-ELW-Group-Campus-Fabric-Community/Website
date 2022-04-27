@@ -5,6 +5,7 @@ import Link from 'next/link';
 import styles from '../../../styles/anchors/Footer.module.css';
 import { footerColors } from '../../../styles/_colors';
 
+
 const DefaultFooter = () => {
     return (
         <footer className={styles.footer}>
@@ -18,7 +19,9 @@ const DefaultFooter = () => {
                 <div className={styles.logo}>
                     <Link href="/">
                         <a>
-                            {/* <img src='../../../static/favicon.ico' alt="University Logo" /> */}
+                            <img 
+                                src="/img/umd_logo.png" 
+                                alt="UMD Logo"/>
                             <h1>Experiential Learning</h1>
                         </a>
                     </Link>

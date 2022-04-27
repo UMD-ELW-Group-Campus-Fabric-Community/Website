@@ -12,6 +12,15 @@ const fileTypes = [
     'application/msword',
     'application/vnd.ms-excel',
     'application/vnd.ms-powerpoint',
+    '.doc',
+    '.docx',
+    '.xls',
+    '.xlsx',
+    '.ppt',
+    '.pptx',
+    '.pdf',
+    '.png',
+    '.jpg',
 ]
 
 const DragDrop: React.FC = () => {
@@ -27,6 +36,7 @@ const DragDrop: React.FC = () => {
             };
             reader.readAsArrayBuffer(file);
         });
+        console.log(acceptedFiles);
         setFiles((prev) => [...prev, ...acceptedFiles]);
     }, [])
 
