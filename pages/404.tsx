@@ -9,13 +9,13 @@ import DefaultFooter from '../library/components/anchors/footer'
 import defaultStyle from '../styles/pages/Default.module.css'
 
 const _404 = () => {
+    const router = useRouter();
 
-    // useEffect(() => {
-    //     const timeout = setTimeout(() => {
-    //         router.push('/')
-    //     }, 5000)
-    // }, [])
-
+    useEffect(() => {
+        const timeout = setTimeout(() => {
+            router.push('/')
+        }, 5000)
+    }, [])
     
     return (
         <div className={defaultStyle.container}>
@@ -29,7 +29,7 @@ const _404 = () => {
                 </p>
                 <p>
                     If you were not redirected, please click 
-                    <Link href={'/'} as='/'>
+                    <Link href={'/'}>
                         <a> here</a>
                     </Link>
                     .

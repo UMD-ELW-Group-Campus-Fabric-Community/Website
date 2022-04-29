@@ -44,3 +44,13 @@ export const inputColors = {
 
     }
 }
+
+export const HomePageColors = {
+    background: "#fff",
+    text: {
+        head: '#e03a3e',
+        body: '#222222',
+        over: '#fff',
+    },
+    lines: '#ffc845'
+}

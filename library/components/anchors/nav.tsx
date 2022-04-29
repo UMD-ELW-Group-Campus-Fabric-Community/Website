@@ -1,13 +1,10 @@
 import Link from "next/link";
 import { navRoutes } from "../../utils/_navLinks";
-import Image from "next/image";
-import { useEffect, useState } from "react";
 
 import styles from "../../../styles/anchors/Nav.module.css";
 import { navColors } from "../../../styles/_colors";
 import { hasChildren } from "../../_types";
 
-import { route } from "next/dist/server/router";
 
 const DefaultNav = (props: hasChildren) => {
   return (
@@ -73,17 +70,22 @@ type ExtendedNavProps = {
   height?: number;
   image_src: string;
   image_alt: string;
+  overlay_text?: string;
 };
 export const ExtendedNav = (props: ExtendedNavProps) => {
   return (
     <DefaultNav>
       <div className={styles.extendedImage}>
-        <Image
+        <img
           src={props.image_src}
           alt={props.image_alt}
-          width={props.width}
-          height={props.height}
         />
+        {
+          props.overlay_text &&
+          <h1 style={{
+            color: navColors.primary.text,
+          }}>{props.overlay_text}</h1>
+        }
       </div>
     </DefaultNav>
   );
