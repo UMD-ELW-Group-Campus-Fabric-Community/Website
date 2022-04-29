@@ -12,7 +12,10 @@ import DefaultHeader from '../../library/utils/metadata/header'
 import DefaultNav, { SubNav } from '../../library/components/anchors/nav'
 import DefaultFooter from '../../library/components/anchors/footer'
 
-import defaultStyle from '../../styles/pages/Default.module.css'
+import defaultStyle from "../../styles/pages/Default.module.css";
+import searchStyles from "../../styles/components/Search.module.css";
+import styles from "../../styles/pages/Program.module.css";
+import { SearchColors } from "../../styles/_colors";
 
 
 /*

@@ -54,3 +54,19 @@ export const HomePageColors = {
     },
     lines: '#ffc845'
 }
+
+export const SearchColors = {
+    background: {
+        primary: '#EEEEEE',
+        secondary: '#FAFAFA',
+        fill: '#fff',        
+    },
+    text: {
+        primary: '#000',
+        secondary: '#222222',
+        over: '#fff',
+    },
+    button: {
+        primary: '#e03a3e',
+    }
+}
