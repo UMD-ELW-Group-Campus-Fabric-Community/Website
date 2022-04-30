@@ -6,20 +6,8 @@ import {inputColors} from '../../../styles/_colors';
 
 const fileTypes = [
     'application/pdf',
-    'application/vnd.openxmlformats-officedocument.wordprocessingml.document',
-    'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet',
-    'application/vnd.openxmlformats-officedocument.presentationml.presentation',
-    'application/msword',
-    'application/vnd.ms-excel',
-    'application/vnd.ms-powerpoint',
-    '.doc',
-    '.docx',
-    '.xls',
-    '.xlsx',
-    '.ppt',
-    '.pptx',
     '.pdf',
-    '.png',
+    'image/jpg',
     '.jpg',
 ]
 
@@ -79,8 +67,8 @@ const DragDrop: React.FC = () => {
                         isDragActive ?
                             <p>Drop the files here ...</p> :
                             <p>
-                                Upload files <br/>
-                                <em> (Max: 4 files, only xlsx, pdf, docx, and pptx).</em>
+                                Upload files (Max: 4 files)<br/>
+                                <em> Accepted files: {fileTypes.join(", ")} </em>
                                 
                             </p>
                         }

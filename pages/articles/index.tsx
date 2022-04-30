@@ -3,7 +3,7 @@ import { NextPage, GetStaticProps } from "next";
 import React, { useEffect } from "react";
 
 import DefaultHeader from "../../library/utils/metadata/header";
-import DefaultNav, { SubNav } from "../../library/components/anchors/nav";
+import DefaultNav, { SubNav } from "../../library/components/anchors/header";
 import DefaultFooter from "../../library/components/anchors/footer";
 
 import defaultStyle from "../../styles/pages/Default.module.css";
@@ -30,7 +30,7 @@ type articlesProps = {
 };
 
 export const getStaticProps: GetStaticProps<articlesProps> = async () => {
-  const response = await fetch("http://localhost:1433/api/articles", {
+  const response = await fetch(`${process.env.API_URL}/articles`, {
     method: "GET",
     headers: {
       "Content-Type": "application/json",
@@ -103,6 +103,8 @@ const Articles: NextPage<articlesProps> = ({ articles }) => {
                   const text = e.currentTarget.value;
                   if (!filters.includes(text)) {
                     setFilters([...filters, text]);
+                    e.currentTarget.value = "";
+                    setSearch("");
                   }
                 }
               }}
@@ -122,8 +124,12 @@ const Articles: NextPage<articlesProps> = ({ articles }) => {
                       newFilters.splice(newFilters.indexOf(filter), 1);
                       setFilters(newFilters);
                     }}
+                    style={{
+                      backgroundColor: SearchColors.background.fill,
+                      color: SearchColors.text.secondary,
+                    }}
                   >
-                    {filter}
+                    <h5> 🞨 {filter}</h5>
                   </div>
                 );
               })}
@@ -181,7 +187,11 @@ const Articles: NextPage<articlesProps> = ({ articles }) => {
                         {formatDate(article.article_updated_at.toString())}
                       </em>{" "}
                     </h6>
-                    <p>{article.article_content.substring(0, 250) + "..."}</p>
+                    <p>{
+                        article.article_content.length > 200 ?
+                        article.article_content.substring(0, 200) + "..." :
+                        article.article_content
+                      }</p>
                     <button
                       className={styles.readMore}
                       onClick={() => {

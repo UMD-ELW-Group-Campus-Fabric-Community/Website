@@ -3,7 +3,7 @@ import { useRouter } from 'next/router'
 import Link from 'next/link';
 
 import DefaultHeader from '../library/utils/metadata/header'
-import DefaultNav from '../library/components/anchors/nav'
+import DefaultNav from '../library/components/anchors/header'
 import DefaultFooter from '../library/components/anchors/footer'
 
 import defaultStyle from '../styles/pages/Default.module.css'

@@ -11,7 +11,7 @@ import { useRouter } from "next/router";
 
 import Loading from '../../library/components/panels/loading';
 import DefaultHeader from '../../library/utils/metadata/header'
-import DefaultNav, { SubNav } from '../../library/components/anchors/nav'
+import DefaultNav, { SubNav } from '../../library/components/anchors/header'
 import DefaultFooter from '../../library/components/anchors/footer'
 
 import defaultStyle from '../../styles/pages/Default.module.css'
@@ -32,7 +32,7 @@ import defaultStyle from '../../styles/pages/Default.module.css'
 
 export const getStaticPaths: GetStaticPaths = async (): Promise<GetStaticPathsResult> => {
     // Call an external API endpoint to get posts
-    const response = await fetch("http://localhost:1433/api/articles", {      
+    const response = await fetch(`${process.env.API_URL}/articles`, {      
         method: 'GET',
         headers: {
             'Content-Type': 'application/json'
@@ -53,7 +53,7 @@ export const getStaticPaths: GetStaticPaths = async (): Promise<GetStaticPathsRe
 
 export const getStaticProps: GetStaticProps<articleProps> = async (context: GetStaticPropsContext) => {
     const { articleName } = context.params as ParsedUrlQuery;
-    const response = await fetch(`http://localhost:1433/api/articles/${articleName}`,{
+    const response = await fetch(`${process.env.API_URL}/articles/${articleName}`,{
         method: 'GET',
         headers: {
             'Content-Type': 'application/json'

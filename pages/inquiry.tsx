@@ -6,7 +6,7 @@ import PopUp from '../library/components/panels/notification';
 import TextInput, {LongTextInput} from '../library/utils/input/text';
 import Dropdown from '../library/utils/input/dropdown';
 import DefaultHeader from '../library/utils/metadata/header'
-import DefaultNav, { SubNav } from '../library/components/anchors/nav'
+import DefaultNav, { SubNav } from '../library/components/anchors/header'
 import DefaultFooter from '../library/components/anchors/footer'
 
 import defaultStyle from '../styles/pages/Default.module.css'

@@ -2,7 +2,7 @@ import type { NextPage } from "next";
 import { useRouter } from "next/router";
 
 import DefaultHeader from "../library/utils/metadata/header";
-import { ExtendedNav } from "../library/components/anchors/nav";
+import { ExtendedNav } from "../library/components/anchors/header";
 import DefaultFooter from "../library/components/anchors/footer";
 
 import defaultStyle from "../styles/pages/Default.module.css";

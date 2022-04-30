@@ -9,7 +9,7 @@ import { ParsedUrlQuery } from "querystring";
 import { useRouter } from "next/router";
 
 import DefaultHeader from '../../library/utils/metadata/header'
-import DefaultNav, { SubNav } from '../../library/components/anchors/nav'
+import DefaultNav, { SubNav } from '../../library/components/anchors/header'
 import DefaultFooter from '../../library/components/anchors/footer'
 
 import defaultStyle from "../../styles/pages/Default.module.css";
@@ -32,7 +32,7 @@ import { SearchColors } from "../../styles/_colors";
 */
 
 export const getStaticPaths: GetStaticPaths = async (): Promise<GetStaticPathsResult> => {
-    const response = await fetch("http://localhost:1433/api/programs", {
+    const response = await fetch(`${process.env.API_URL}/programs`, {
         method: 'GET',
         headers: {
             'Content-Type': 'application/json'
@@ -54,7 +54,7 @@ export const getStaticPaths: GetStaticPaths = async (): Promise<GetStaticPathsRe
 
 export const getStaticProps: GetStaticProps<programProps> = async (context: GetStaticPropsContext ) => {
     const { programName } = context.params as ParsedUrlQuery;
-    const response = await fetch(`http://localhost:1433/api/programs/${programName}`,{
+    const response = await fetch(`${process.env.API_URL}/programs/${programName}`,{
         method: 'GET',
         headers: {
             'Content-Type': 'application/json'
