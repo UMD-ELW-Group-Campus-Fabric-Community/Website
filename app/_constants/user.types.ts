@@ -10,15 +10,15 @@ export type User = {
 }
 
 export type UserState = {
+    id: string | null;
     token: string | null;
-    tokenExpiration: string | null;
+    token_expiry: string | null;
     status: 'idle' | 'loading' | 'loaded' | 'error';
-    user: User | null;
 }
 
 export const initialUserState: UserState = {
+    id: null,
     token: null,
-    tokenExpiration: null,
+    token_expiry: null,
     status: 'idle',
-    user: null
 }

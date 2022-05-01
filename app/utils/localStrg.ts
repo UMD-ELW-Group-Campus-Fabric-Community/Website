@@ -1,21 +1,15 @@
-export const setLocalStorageWithExpire = (key: string, value: any, time: number) => {
-    const date = new Date();
-    date.setTime(date.getTime() +
-        (time * 1000) // time in milliseconds    
-    );
-    localStorage.setItem(key, JSON.stringify({ value, time }));
+export const setLocalStorage = (key: string, value: any) => {
+    localStorage.setItem(key, JSON.stringify(value));
 }
 
-export const getLocalStorageWithExpire = (key: string) => {
+export const getLocalStorage = (key: string) => {
     const data = localStorage.getItem(key);
-    if (data) {
-        const { value, time } = JSON.parse(data);
-        const date = new Date();
-        date.setTime(date.getTime() + (time * 1000));
-        if (date > new Date()) {
-            return value;
-        }
-        localStorage.removeItem(key);
+    if (data === null) {
+        return null;
     }
-    return null;
+    return JSON.parse(data);
+}
+
+export const removeLocalStorage = (key: string) => {
+    localStorage.removeItem(key);
 }

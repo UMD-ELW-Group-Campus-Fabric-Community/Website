@@ -17,7 +17,11 @@ const fetchLogin = async (email: string, password: string) => {
     .then((response) => {
       return {
         status: response.status,
-        payload: response.payload,
+        payload: {
+          id : response.payload.body.user_id,
+          token: response.payload.body.token,
+          token_expiry: response.payload.body.token_expiry
+        }
       } as Response;
     })
     .catch((error: ErrorResponse) => {
@@ -28,15 +32,27 @@ const fetchLogin = async (email: string, password: string) => {
     });
 };
 
-const fetchRegister = async (email: string, password: string) => {
+const fetchRegister = async (
+  firstName: string,
+  lastName: string,
+  email: string,
+  password: string,
+  organizationId: number,
+  privilegeId: number
+
+) => {
   const request = {
     method: "POST",
     headers: {
       "Content-Type": "application/json",
     },
     body: JSON.stringify({
+      firstName,
+      lastName,
       email,
-      password,
+      password, 
+      organizationId: organizationId,
+      privilegeId: privilegeId ? privilegeId : 2,
     }),
   };
   return await fetch(`${process.env.AUTH_URL}/register`, request)
@@ -60,7 +76,9 @@ const fetchUpdateUser = async (
   password?: string,
   email?: string,
   firstName?: string,
-  lastName?: string
+  lastName?: string,
+  organizationId?: number,
+  privilegeId?: number
 ) => {
   const request = {
     method: "POST",
@@ -69,11 +87,13 @@ const fetchUpdateUser = async (
       Authorization: `Bearer ${user.token}`,
     },
     body: JSON.stringify({
-      userId: user.user?.id,
+      userId: user.id,
       password,
       email,
       firstName,
       lastName,
+      organizationId,
+      privilegeId,
     }),
   };
   return await fetch(`${process.env.AUTH_URL}/update`, request)
@@ -91,6 +111,33 @@ const fetchUpdateUser = async (
       } as ErrorResponse;
     });
 };
+
+const fetchRevalidateToken = async (token: string, id: string) => {
+  const request = {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json",
+      Authorization: `Bearer ${token}`,
+    },
+    body: JSON.stringify({
+      id: id,
+    }),
+  };
+  return await fetch(`${process.env.AUTH_URL}/revalidate`, request)
+    .then(_handleResponse)
+    .then((response) => {
+      return {
+        status: response.status,
+        payload: response.payload.data.body,
+      } as Response;
+    })
+    .catch((error: ErrorResponse) => {
+      return {
+        status: error.status,
+        payload: { message: error.payload.message },
+      } as ErrorResponse;
+    });
+}
 
 const _handleResponse = (response: any): Promise<Response> => {
   return response
@@ -116,10 +163,13 @@ const _handleResponse = (response: any): Promise<Response> => {
     });
 };
 
+
+
 const AuthService = {
   fetchLogin,
   fetchRegister,
   fetchUpdateUser,
+  fetchRevalidateToken,
 };
 
 export default AuthService;

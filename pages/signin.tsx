@@ -1,4 +1,5 @@
 import type { NextPage } from "next";
+import Link from "next/link";
 import React, { useState, useEffect } from "react";
 import { useRouter } from "next/router";
 import Head from "next/head";
@@ -6,6 +7,7 @@ import Head from "next/head";
 import { useAppDispatch, useAppSelector } from "../app/hooks";
 import { loginAsync } from "../app/_reducers/user.thunk";
 import { UserState } from "../app/_constants/user.types";
+import { UserActions } from "../app/_actions/user.actions";
 
 import DefaultFooter from "../library/components/anchors/footer";
 import DefaultHeader from "../library/components/anchors/header";
@@ -19,11 +21,12 @@ const Signin: NextPage = () => {
   const router = useRouter();
   const dispatch = useAppDispatch();
 
+  const [redirect, setRedirect] = useState("/");
   const [email, setEmail] = useState<string>("");
   const [password, setPassword] = useState<string>("");
   const [error, setError] = useState("");
 
-  const { status } = useAppSelector<UserState>((state) => state?.user);
+  const { status } = useAppSelector<UserState>((state) => state.user);
 
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
@@ -32,7 +35,6 @@ const Signin: NextPage = () => {
       return;
     }
     dispatch(
-        //@ts-ignore
       loginAsync({
         email,
         password,
@@ -43,7 +45,7 @@ const Signin: NextPage = () => {
   useEffect(() => {
     switch (status) {
       case "loaded":
-        router.push("/");
+        router.push(redirect);
         break;
       case "error":
         setError("Invalid email or password");
@@ -52,6 +54,13 @@ const Signin: NextPage = () => {
         break;
     }
   }, [status]);
+
+  useEffect(() => {
+    if ( router && router.query.redirect ) {
+      setError("You must be logged in to access this page");
+      setRedirect(String(router.query.redirect));
+    }
+  }, []);
 
   return (
     <div>
@@ -102,5 +111,9 @@ const Signin: NextPage = () => {
     </div>
   );
 };
+
+Signin.getInitialProps = ({ query }) => {
+  return { query };
+}
 
 export default Signin;
