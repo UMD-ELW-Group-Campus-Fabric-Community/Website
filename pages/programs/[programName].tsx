@@ -136,8 +136,10 @@ const Program: NextPage<programProps> = (program) => {
               style={{
                 backgroundColor: formColors.button.primary,
               }}
-            >
-              <a href={program.program_website}>Reach out to us</a>
+              onClick={() => {
+                router.push("/inquiry");
+              }}
+            >Reach out to us
             </button>
           </div>
         </div>
