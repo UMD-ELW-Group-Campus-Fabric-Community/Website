@@ -50,7 +50,7 @@ const Signin: NextPage = () => {
       default:
         break;
     }
-  }, [status, router]);
+  }, [status, router, redirect]);
 
   useEffect(() => {
     if ( router && router.query.redirect ) {

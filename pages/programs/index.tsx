@@ -65,7 +65,6 @@ const Programs: NextPage<programsProps> = ({ programs }) => {
 
   return (
     <div className={defaultStyle.container}>
-      {/* This is the head of the DOM, not of the body */}
       <DefaultHeader />
       <DefaultNav />
 

@@ -111,10 +111,15 @@ const Program: NextPage<programProps> = (program) => {
           </p>
           <p>
             If you want to learn more, visit the {program.program_name}&#39;s
-            website (<Link  href={program.program_website}><a>here</a></Link>), or fill out an{" "}
-            <Link href={'/inquiry'}>
-              <a>Inquiry Form</a>.
+            website (
+            <Link href={program.program_website}>
+              <a>here</a>
             </Link>
+            ), or fill out an
+            <Link href={"/inquiry"}>
+              <a>Inquiry Form</a>
+            </Link>
+            .
           </p>
           <h3>Program Focus</h3>
           <div className={styles.focusContainer}>
@@ -147,20 +152,7 @@ const Program: NextPage<programProps> = (program) => {
             </button>
           </div>
         </div>
-        {
-          // program.articles && program.articles.map((article, index) => (
-          //     <div key={index}>
-          //         <h5>{article.article_title}</h5>
-          //         <p>{article.user_fname} {article.user_lname}</p>
-          //         <p>{article.organization_name}
-          //             <br />
-          //             {article.article_updated_at}
-          //         </p>
-          //     </div>
-          // ))
-        }
       </main>
-
       <DefaultFooter />
     </div>
   );
