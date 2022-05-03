@@ -152,7 +152,7 @@ const Articles: NextPage<articlesProps> = ({ articles }) => {
                   return (
                     modIncludes(article.article_title, filter) ||
                     modIncludes(article.article_content, filter) ||
-                    modIncludes(article.organization_name, filter)
+                    modIncludes(article.author, filter)
                   );
                 });
               })
@@ -162,7 +162,7 @@ const Articles: NextPage<articlesProps> = ({ articles }) => {
                 } else if (
                   modIncludes(article.article_title, search) ||
                   modIncludes(article.article_content, search) ||
-                  modIncludes(article.organization_name, search)
+                  modIncludes(article.author, search)
                 ) {
                   return article;
                 }
@@ -179,7 +179,7 @@ const Articles: NextPage<articlesProps> = ({ articles }) => {
                   >
                     <h2>{article.article_title}</h2>
                     <h6>
-                      Written by {article.user_fname + " " + article.user_lname}
+                      Written by {article.author}
                       .{" "}
                       <em>
                         Last Updated:{" "}
