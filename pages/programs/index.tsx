@@ -148,7 +148,6 @@ const Programs: NextPage<programsProps> = ({ programs }) => {
                   return (
                     modIncludes(program.program_name, filter) ||
                     modIncludes(program.program_description, filter) ||
-                    modIncludes(program.program_focus.join(", "), filter) ||
                     modIncludes(program.department_name, filter) ||
                     modIncludes(program.organization_name, filter)
                   );
@@ -160,7 +159,6 @@ const Programs: NextPage<programsProps> = ({ programs }) => {
                 } else if (
                   modIncludes(program.program_name, search) ||
                   modIncludes(program.program_description, search) ||
-                  modIncludes(program.program_focus.join(", "), search) ||
                   modIncludes(program.department_name, search) ||
                   modIncludes(program.organization_name, search)
                 ) {

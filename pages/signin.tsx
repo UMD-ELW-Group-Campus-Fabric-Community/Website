@@ -42,7 +42,7 @@ const Signin: NextPage = () => {
   useEffect(() => {
     switch (status) {
       case "loaded":
-        // router.push(redirect);
+        router.push(redirect);
         break;
       case "error":
         setError("Invalid email or password");
@@ -50,14 +50,14 @@ const Signin: NextPage = () => {
       default:
         break;
     }
-  }, [status]);
+  }, [status, router]);
 
   useEffect(() => {
     if ( router && router.query.redirect ) {
       setError("You must be logged in to access this page");
       setRedirect(String(router.query.redirect));
     }
-  }, []);
+  }, [router]);
 
   return (
     <div>
@@ -100,7 +100,7 @@ const Signin: NextPage = () => {
 
             <button type="submit">Sign In</button>
 
-            <p>Don't have an account?</p>
+            <p>Do not have an account?</p>
           </form>
         </div>
       </main>

@@ -17,6 +17,7 @@ import DefaultFooter from "../../library/components/anchors/footer";
 import defaultStyle from "../../styles/pages/Default.module.css";
 import styles from "../../styles/pages/Programs.module.css";
 import { formColors } from "../../styles/_colors";
+import Link from "next/link";
 
 /*
     NextJS will call this function to get the list of all the program ids.
@@ -109,9 +110,11 @@ const Program: NextPage<programProps> = (program) => {
             <br />
           </p>
           <p>
-            If you want to learn more, visit the {program.program_name}'s
-            website (<a href={program.program_website}>here</a>), or fill out an{" "}
-            <a href="/inquiry">Inquiry Form</a>.
+            If you want to learn more, visit the {program.program_name}&#39;s
+            website (<Link  href={program.program_website}><a>here</a></Link>), or fill out an{" "}
+            <Link href={'/inquiry'}>
+              <a>Inquiry Form</a>.
+            </Link>
           </p>
           <h3>Program Focus</h3>
           <div className={styles.focusContainer}>
@@ -126,7 +129,7 @@ const Program: NextPage<programProps> = (program) => {
             Structured as consulting engagements, faculty-led student teams
             provide project management and execution for your information
             challenges and business needs. Projects are culminating learning
-            experiences for our undergraduate and graduate students.,
+            experiences for our undergraduate and graduate students.
           </p>
 
           <div className={styles.program}>
@@ -139,7 +142,8 @@ const Program: NextPage<programProps> = (program) => {
               onClick={() => {
                 router.push("/inquiry");
               }}
-            >Reach out to us
+            >
+              Reach out to us
             </button>
           </div>
         </div>

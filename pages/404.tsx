@@ -15,7 +15,7 @@ const _404 = () => {
         const timeout = setTimeout(() => {
             router.push('/')
         }, 5000)
-    }, [])
+    }, [router])
     
     return (
         <div className={defaultStyle.container}>

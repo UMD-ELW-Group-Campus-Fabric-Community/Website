@@ -101,7 +101,7 @@ const Article: NextPage<articleProps> = (article) => {
         <div className={style.articleWrapper}>
           <article>
             <section className={style.section1}>
-              <img src={article.article_picture} />
+              <img src={article.article_picture} alt={article.article_title+ ' picture'}/>
               <h1>{article.article_title}</h1>
               <h2>
                 Last Updated:{" "}
@@ -131,7 +131,7 @@ const Article: NextPage<articleProps> = (article) => {
               {
                 article.author_pic ? (
                   <div className={style.bioPicture}>
-                    <img src={article.author_pic} />
+                    <img src={article.author_pic} alt={article.author_pic+' picture'} />
                   </div>
                 ): null
               }
