@@ -1,0 +1,72 @@
+.articleWrapper {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  width: 80%;
+}
+
+.articleWrapper hr {
+    border: .5px solid #ccc;
+    background-color: #ccc;
+
+    margin: 10px 0 20px 0;
+}
+
+.articleWrapper article {
+  width: 100%;
+}
+
+.articleWrapper .section1 {
+  width: 100%;
+  display: inline-flex;
+  flex-direction: column;
+}
+.articleWrapper br {
+    margin: 10px 0;
+}
+
+.articleWrapper .section1 img {
+  width: 100%;
+  image-rendering: crisp-edges;
+  padding: 15px 0 30px 0;
+}
+
+.section1 > h1 {
+  font-size: 1.5rem;
+  padding: 0;
+  margin: 0;
+}
+
+.section1 > h2 {
+  width: 100%;
+  text-align: left;
+
+  font-size: 0.7rem;
+  font-weight: lighter;
+  font-style: italic;
+  padding: 0;
+  margin: 0;
+}
+
+
+.section2 {
+    width: 100%;
+}
+
+.section3 {
+    width: 100%;
+    height: fit-content;
+
+    max-height: 400px;
+    
+}
+
+.section3 .bioPicture {
+    width: 30%;
+    height: auto;
+}
+
+.section3 .bio {
+    width: auto;
+}

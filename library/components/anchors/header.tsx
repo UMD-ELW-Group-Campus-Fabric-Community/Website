@@ -123,7 +123,11 @@ export const SubNav = (props: SubNavProps) => {
             props.current &&
             <li key={props.current}>
                 <Link href={`/${props.page}`}>
-                    <a>{props.current}</a>
+                    <a>{
+                      props.current.length > 19 ?
+                      props.current.substring(0, 19) + "..." :
+                      props.current
+                    }</a>
                 </Link>
             </li>
         }

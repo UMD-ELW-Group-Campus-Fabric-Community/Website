@@ -88,7 +88,7 @@ const Home: NextPage = () => {
               color: HomePageColors.text.head,
             }}
           >
-            Connect with programs ampus wide to...
+            Connect with programs campus wide to...
           </h2>
           <div>
             <h3>Engage/sponsor consulting projects</h3>

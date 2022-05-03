@@ -7,15 +7,12 @@ import Head from "next/head";
 import { useAppDispatch, useAppSelector } from "../app/hooks";
 import { loginAsync } from "../app/_reducers/user.thunk";
 import { UserState } from "../app/_constants/user.types";
-import { UserActions } from "../app/_actions/user.actions";
 
 import DefaultFooter from "../library/components/anchors/footer";
 import DefaultHeader from "../library/components/anchors/header";
 
-import defaultStyles from "../styles/pages/Default.module.css";
 import style from "../styles/pages/Signin.module.css";
 import TextInput from "../library/utils/input/text";
-import { navColors } from "../styles/_colors";
 
 const Signin: NextPage = () => {
   const router = useRouter();
@@ -45,7 +42,7 @@ const Signin: NextPage = () => {
   useEffect(() => {
     switch (status) {
       case "loaded":
-        router.push(redirect);
+        // router.push(redirect);
         break;
       case "error":
         setError("Invalid email or password");

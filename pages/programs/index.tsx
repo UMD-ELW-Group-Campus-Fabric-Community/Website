@@ -10,18 +10,21 @@ import defaultStyle from "../../styles/pages/Default.module.css";
 import searchStyles from "../../styles/components/Search.module.css";
 import styles from "../../styles/pages/Program.module.css";
 import { SearchColors } from "../../styles/_colors";
-
+import { articleProps } from "../articles";
+import { useRouter } from "next/router";
 export type programProps = {
   program_id: string;
   program_name: string;
   program_description: string;
   program_website: string;
-  program_focus: string[];
+  program_image: string;
+  program_focus: string;
   department_id: string;
   department_name: string;
   organization_id: string;
   organization_name: string;
   organization_website: string;
+  articles? : articleProps[];
 };
 
 type programsProps = {
@@ -53,6 +56,8 @@ const Programs: NextPage<programsProps> = ({ programs }) => {
   const [selectedPrograms, _] = React.useState<programProps[]>(programs);
   const [search, setSearch] = React.useState<string>("");
   const [filters, setFilters] = React.useState<string[]>([]);
+
+  const router = useRouter();
 
   const modIncludes = (value: string, target: string) => {
     return value.toLowerCase().includes(target.toLowerCase()) ? value : null;
@@ -182,7 +187,7 @@ const Programs: NextPage<programsProps> = ({ programs }) => {
                       <button
                         className={styles.readMore}
                         onClick={() => {
-                          window.location.href = `/programs/${program.program_name}`;
+                          router.push(`/programs/${program.program_name}`);
                         }}
                         style={{
                           backgroundColor: SearchColors.button.primary,

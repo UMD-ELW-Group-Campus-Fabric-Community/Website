@@ -12,17 +12,16 @@ import styles from "../../styles/pages/Article.module.css";
 import { SearchColors } from "../../styles/_colors";
 
 export type articleProps = {
-  user_id: number;
-  user_fname: string;
-  user_lname: string;
   article_id: number;
   article_title: string;
   article_content: string;
+  article_picture: string;
   article_created_at: Date;
   article_updated_at: Date;
   organization_id: number;
-  organization_name: string;
-  organization_website: string;
+  author: string;
+  author_pic: string;
+  author_bio: string;
 };
 
 type articlesProps = {
