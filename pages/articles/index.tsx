@@ -11,6 +11,8 @@ import searchStyles from "../../styles/components/Search.module.css";
 import styles from "../../styles/pages/Article.module.css";
 import { SearchColors } from "../../styles/_colors";
 
+import { useWindowDimensions } from "../../library/utils/windowDimensions";
+
 export type articleProps = {
   article_id: number;
   article_title: string;
@@ -53,6 +55,8 @@ const Articles: NextPage<articlesProps> = ({ articles }) => {
   const [selectedArticles, _] = React.useState<articleProps[]>(articles);
   const [search, setSearch] = React.useState<string>("");
   const [filters, setFilters] = React.useState<string[]>([]);
+  const [wordLimit, setWordLimit] = React.useState<number>(200);
+  const { width, height } = useWindowDimensions();
 
   const modIncludes = (value: string, target: string) => {
     return value.toLowerCase().includes(target.toLowerCase()) ? value : null;
@@ -68,7 +72,23 @@ const Articles: NextPage<articlesProps> = ({ articles }) => {
       minute: "numeric",
     });
   };
+  const updateWordLimit = () => {
+    if (width < 768) {
+      setWordLimit(100);
+    } else if (width < 425){
+      setWordLimit(50);
+    } else {
+      setWordLimit(200);
+    }
+  }
 
+  useEffect(() => {
+    updateWordLimit();
+  }, [width]);
+
+  useEffect(() => {
+    updateWordLimit();
+  }, []);
   return (
     <div className={defaultStyle.container}>
       {/* This is the head of the DOM, not of the body */}
@@ -110,31 +130,36 @@ const Articles: NextPage<articlesProps> = ({ articles }) => {
             />
           </div>
           {/* Filters */}
-          <div className={searchStyles.filterContainer}>
-            <hr />
-            <div className={searchStyles.filterWrapper}>
-              {filters.map((filter, index) => {
-                return (
-                  <div
-                    key={index}
-                    className={searchStyles.filter}
-                    onClick={() => {
-                      const newFilters = [...filters];
-                      newFilters.splice(newFilters.indexOf(filter), 1);
-                      setFilters(newFilters);
-                    }}
-                    style={{
-                      backgroundColor: SearchColors.background.fill,
-                      color: SearchColors.text.secondary,
-                    }}
-                  >
-                    <h5> 🞨 {filter}</h5>
-                  </div>
-                );
-              })}
+          {
+            filters.length > 0 && (
+              <div className={searchStyles.filterContainer}>
+              <hr />
+              <div className={searchStyles.filterWrapper}>
+                {filters.map((filter, index) => {
+                  return (
+                    <div
+                      key={index}
+                      className={searchStyles.filter}
+                      onClick={() => {
+                        const newFilters = [...filters];
+                        newFilters.splice(newFilters.indexOf(filter), 1);
+                        setFilters(newFilters);
+                      }}
+                      style={{
+                        backgroundColor: SearchColors.background.fill,
+                        color: SearchColors.text.secondary,
+                      }}
+                    >
+                      <h5> 🞨 {filter}</h5>
+                    </div>
+                  );
+                })}
+              </div>
+              <hr />
             </div>
-            <hr />
-          </div>
+           
+            )
+          }
           {/* Selected Articles */}
           <div
             className={styles.articleContainer}
@@ -187,8 +212,8 @@ const Articles: NextPage<articlesProps> = ({ articles }) => {
                       </em>{" "}
                     </h6>
                     <p>{
-                        article.article_content.length > 200 ?
-                        article.article_content.substring(0, 200) + "..." :
+                        article.article_content.length > wordLimit ?
+                        article.article_content.substring(0, wordLimit) + "..." :
                         article.article_content
                       }</p>
                     <button

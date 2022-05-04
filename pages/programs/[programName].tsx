@@ -115,7 +115,7 @@ const Program: NextPage<programProps> = (program) => {
             <Link href={program.program_website}>
               <a>here</a>
             </Link>
-            ), or fill out an
+            ), or fill out an {" "}
             <Link href={"/inquiry"}>
               <a>Inquiry Form</a>
             </Link>

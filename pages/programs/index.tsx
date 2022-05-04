@@ -1,6 +1,7 @@
 import Link from "next/link";
 import { NextPage, GetStaticProps } from "next";
-import React from "react";
+import React, { useEffect, useState } from "react";
+import { useRouter } from "next/router";
 
 import DefaultHeader from "../../library/utils/metadata/header";
 import DefaultNav, { SubNav } from "../../library/components/anchors/header";
@@ -11,7 +12,9 @@ import searchStyles from "../../styles/components/Search.module.css";
 import styles from "../../styles/pages/Program.module.css";
 import { SearchColors } from "../../styles/_colors";
 import { articleProps } from "../articles";
-import { useRouter } from "next/router";
+
+import { useWindowDimensions } from "../../library/utils/windowDimensions";
+
 export type programProps = {
   program_id: string;
   program_name: string;
@@ -24,7 +27,7 @@ export type programProps = {
   organization_id: string;
   organization_name: string;
   organization_website: string;
-  articles? : articleProps[];
+  articles?: articleProps[];
 };
 
 type programsProps = {
@@ -56,12 +59,32 @@ const Programs: NextPage<programsProps> = ({ programs }) => {
   const [selectedPrograms, _] = React.useState<programProps[]>(programs);
   const [search, setSearch] = React.useState<string>("");
   const [filters, setFilters] = React.useState<string[]>([]);
+  const [wordLimit, setWordLimit] = React.useState<number>(200);
+  const { width, height } = useWindowDimensions();
 
   const router = useRouter();
 
   const modIncludes = (value: string, target: string) => {
     return value.toLowerCase().includes(target.toLowerCase()) ? value : null;
   };
+  
+  const updateWordLimit = () => {
+    if (width < 768) {
+      setWordLimit(100);
+    } else if (width < 425){
+      setWordLimit(50);
+    } else {
+      setWordLimit(200);
+    }
+  }
+
+  useEffect(() => {
+    updateWordLimit();
+  }, [width]);
+
+  useEffect(() => {
+    updateWordLimit();
+  }, []);
 
   return (
     <div className={defaultStyle.container}>
@@ -104,31 +127,33 @@ const Programs: NextPage<programsProps> = ({ programs }) => {
             />
           </div>
           {/* Filters */}
-          <div className={searchStyles.filterContainer}>
-            <hr />
-            <div className={searchStyles.filterWrapper}>
-              {filters.map((filter, index) => {
-                return (
-                  <div
-                    key={index}
-                    className={searchStyles.filter}
-                    onClick={() => {
-                      const newFilters = [...filters];
-                      newFilters.splice(newFilters.indexOf(filter), 1);
-                      setFilters(newFilters);
-                    }}
-                    style={{
-                      backgroundColor: SearchColors.background.fill,
-                      color: SearchColors.text.secondary,
-                    }}
-                  >
-                  <h5> 🞨 {filter}</h5>
-                  </div>
-                );
-              })}
+          {filters.length > 0 && (
+            <div className={searchStyles.filterContainer}>
+              <hr />
+              <div className={searchStyles.filterWrapper}>
+                {filters.map((filter, index) => {
+                  return (
+                    <div
+                      key={index}
+                      className={searchStyles.filter}
+                      onClick={() => {
+                        const newFilters = [...filters];
+                        newFilters.splice(newFilters.indexOf(filter), 1);
+                        setFilters(newFilters);
+                      }}
+                      style={{
+                        backgroundColor: SearchColors.background.fill,
+                        color: SearchColors.text.secondary,
+                      }}
+                    >
+                      <h5> 🞨 {filter}</h5>
+                    </div>
+                  );
+                })}
+              </div>
+              <hr />
             </div>
-            <hr />
-          </div>
+          )}
           {/* Selected Programs */}
 
           <div
@@ -176,11 +201,12 @@ const Programs: NextPage<programsProps> = ({ programs }) => {
                   >
                     <div className={styles.programName}>
                       <h2>{program.program_name}</h2>
-                      <p>{
-                        program.program_description.length > 200 ?
-                          program.program_description.substring(0, 200) + "..." : 
-                          program.program_description
-                      }</p>
+                      <p>
+                        {program.program_description.length > wordLimit
+                          ? program.program_description.substring(0, wordLimit) +
+                            "..."
+                          : program.program_description}
+                      </p>
                       <button
                         className={styles.readMore}
                         onClick={() => {
