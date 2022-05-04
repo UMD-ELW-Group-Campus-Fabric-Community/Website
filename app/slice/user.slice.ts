@@ -62,8 +62,8 @@ export const UserSlice = createSlice({
             id: data.id,
             status: "loaded"
           }
-        })
-
+        });
+        
       // Login
       builder
         .addCase(loginAsync.fulfilled, (state, action) => {

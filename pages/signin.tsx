@@ -11,6 +11,7 @@ import { UserState } from "../app/_constants/user.types";
 import DefaultFooter from "../library/components/anchors/footer";
 import DefaultHeader from "../library/components/anchors/header";
 
+import defaultStyle from '../styles/pages/Default.module.css';
 import style from "../styles/pages/Signin.module.css";
 import TextInput from "../library/utils/input/text";
 
@@ -53,21 +54,16 @@ const Signin: NextPage = () => {
   }, [status, router, redirect]);
 
   useEffect(() => {
-    if ( router && router.query.redirect ) {
+    if (router && router.query.redirect) {
       setError("You must be logged in to access this page");
       setRedirect(String(router.query.redirect));
     }
   }, [router]);
 
   return (
-    <div>
-      <Head>
-        <title>Signin</title>
-        <meta name="description" content="Signin" />
-        <link rel="icon" href="/favicon.ico" />
-      </Head>
+    <div className={defaultStyle.container}>
       <DefaultHeader />
-      <main>
+      <main className={defaultStyle.main}>
         {status === "loading" && <p>Loading...</p>}
         <div className={style.formWrapper}>
           <form onSubmit={handleSubmit}>
@@ -111,6 +107,6 @@ const Signin: NextPage = () => {
 
 Signin.getInitialProps = ({ query }) => {
   return { query };
-}
+};
 
 export default Signin;

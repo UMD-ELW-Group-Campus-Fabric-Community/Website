@@ -3,7 +3,9 @@
   flex-direction: column;
   align-items: center;
   justify-content: center;
+
   width: 80%;
+  max-width: 800px;
 }
 
 .articleWrapper hr {
@@ -28,6 +30,7 @@
 
 .articleWrapper .section1 img {
   width: 100%;
+  height: auto;
   image-rendering: crisp-edges;
   padding: 15px 0 30px 0;
 }
