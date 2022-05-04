@@ -103,7 +103,7 @@ const Program: NextPage<programProps> = (program) => {
         <SubNav page="programs" current={program.program_name} />
         <div className={styles.programWrapper}>
           <h2>{program.program_name}</h2>
-          <img src={program.program_image} />
+          <img src={program.program_image} alt={program.program_name+" image"} />
           <h3>Who We Are</h3>
           <p>
             {program.program_description}
