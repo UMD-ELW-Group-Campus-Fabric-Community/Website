@@ -84,11 +84,11 @@ const Articles: NextPage<articlesProps> = ({ articles }) => {
 
   useEffect(() => {
     updateWordLimit();
-  }, [width]);
+  }, [width, setWordLimit]);
 
   useEffect(() => {
     updateWordLimit();
-  }, []);
+  }, [setWordLimit]);
   return (
     <div className={defaultStyle.container}>
       {/* This is the head of the DOM, not of the body */}
