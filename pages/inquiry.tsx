@@ -24,14 +24,6 @@ type inquiryProps = {
 }
 
 export const getStaticProps: GetStaticProps<inquiryProps> = async() => {
-    // const results = await fetch('https://api.covid19india.org/data.json', {
-    //     method: 'GET',
-    //     headers: {
-    //         'Content-Type': 'application/json'
-    //     }
-    // })
-    // const data = await results.json()
-
 
     return await {
         props: {
@@ -83,7 +75,7 @@ const WorkRequestForm: NextPage<inquiryProps> = ({ programInterests }) => {
 
     const { values, onChange, onSubmit } = useForm(
         {
-            endpoint: '/api/inquiry',
+            endpoint: 'inquiry',
             method: 'POST'
         },
         initValues,

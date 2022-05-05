@@ -22,7 +22,7 @@ const useForm = (params:reqParams, initialState = {}, callback: any) => {
 
     const onSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
         event.preventDefault();
-        const res = await fetch(`http://localhost:3000${params.endpoint}`, {
+        const res = await fetch(`${process.env.API_URL}/${params.endpoint}`, {
             method: params.method,
             headers: {
                 'Content-Type': 'application/json'
