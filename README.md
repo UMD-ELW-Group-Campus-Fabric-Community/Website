@@ -43,6 +43,19 @@ Static generation refers to generating the pages are build time for all posibile
 
 To ease development of new routes, each major function and feature have been abstracted to a bare minimum component with their own styles. To create a new page, you can piece together components (e.g., DefaultNav, SubNav, Footer) to produce a new route.
 
+## Launching Production Environment
+
+In order to take advantage of static generation and avoid having to continuously rerender, you will need to run the following commands
+
+```bash
+# Build the application
+yarn build
+# Serve the website
+yarn start
+```
+
+When building the application, you will need to have all endpoints accessible in order to staticaly generate the pages. 
+
 ## Learn More
 To learn more about Next.js, take a look at the following resources:
 
