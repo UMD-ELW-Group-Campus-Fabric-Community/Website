@@ -1,5 +1,3 @@
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
-
 ## Data Source
 This repository uses data thats structure mirrors the data presented from the database. In order to query data directly from the database, clone the [database-1 repository](https://github.com/UMD-ELW-Group-Campus-Fabric-Community/Database-1) and run the docker-container. Refer to repository `README.md` for further instructions for setting up the database.
 **Note that you do not need the database to develop the website.** Under the `data` folder you will see filler data that resembles a simular shape of the database.
