@@ -80,11 +80,11 @@ const Programs: NextPage<programsProps> = ({ programs }) => {
 
   useEffect(() => {
     updateWordLimit();
-  }, [width, setWordLimit]);
+  }, [width, wordLimit]);
 
   useEffect(() => {
     updateWordLimit();
-  }, [setWordLimit]);
+  }, [wordLimit]);
 
   return (
     <div className={defaultStyle.container}>
