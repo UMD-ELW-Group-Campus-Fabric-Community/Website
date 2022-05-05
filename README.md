@@ -1,7 +1,3 @@
-## Data Source
-This repository uses data thats structure mirrors the data presented from the database. In order to query data directly from the database, clone the [database-1 repository](https://github.com/UMD-ELW-Group-Campus-Fabric-Community/Database-1) and run the docker-container. Refer to repository `README.md` for further instructions for setting up the database.
-**Note that you do not need the database to develop the website.** Under the `data` folder you will see filler data that resembles a simular shape of the database.
-
 ## Getting Started
 First, install the dependencies:
 Note: This project was created using yarn, you may want to consider installing yarn first.
@@ -30,6 +26,10 @@ You can start editing the page by modifying `pages/index.tsx`. The page auto-upd
 [API routes](https://nextjs.org/docs/api-routes/introduction) can be accessed on [http://localhost:3000/api/*](http://localhost:3000/api/*). This endpoint can be edited in `pages/api/*.ts`.
 
 The `pages/api` directory is mapped to `/api/*`. Files in this directory are treated as [API routes](https://nextjs.org/docs/api-routes/introduction) instead of React pages.
+
+## Data Source
+This repository uses data thats structure mirrors the data presented from the database. In order to query data directly from the database, clone the [database-1 repository](https://github.com/UMD-ELW-Group-Campus-Fabric-Community/Database-1) and run the docker-container. Refer to repository `README.md` for further instructions for setting up the database.
+**Note that you do not need the database to develop the website.** Under the `data` folder you will see filler data that resembles a simular shape of the database.
 
 ## Static Site Generation (Static and Server Side)
 
