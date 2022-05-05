@@ -30,7 +30,7 @@ const Home: NextPage = () => {
     {
       title: "Reach Out",
       src: "/img/home/inquire.jpg",
-      target: "/inquire",
+      target: "/inquiry",
     },
   ];
 
