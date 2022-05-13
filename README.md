@@ -45,9 +45,9 @@ In order to take advantage of static generation and avoid having to continuously
 
 ```bash
 # Build the application
-yarn build
+sudo yarn build
 # Serve the website
-yarn start
+sudo yarn start
 ```
 
 When building the application, you will need to have all endpoints accessible in order to staticaly generate the pages. 
